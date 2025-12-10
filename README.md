@@ -2,9 +2,7 @@
 
 A 40-minute briefing for policymakers and parliamentarians on how money creation actually works in the UK economy.
 
-## 🎯 [View the Presentation](https://yourusername.github.io/sovereign-economics/money-creation-uk.html)
-
-> **Note:** Replace `yourusername` with your GitHub username after enabling GitHub Pages.
+## 🎯 [View the Presentation](https://vg2000.github.io/money-presentation/money-creation-uk.html)
 
 ## Overview
 
@@ -21,7 +19,7 @@ This presentation explains:
 ### Primary Academic Sources
 
 - **Bank of England (2014)** — "[Money creation in the modern economy](https://www.bankofengland.co.uk/quarterly-bulletin/2014/q1/money-creation-in-the-modern-economy)", *Quarterly Bulletin Q1 2014*
-  
+
 - **Berkeley, A., Considine, J., and Hail, S. (2025)** — "The Self-Financing State: An Institutional Analysis of Government Expenditure, Revenue Collection and Debt Issuance Operations in the United Kingdom", *Journal of Economic Issues*, 59(3), 852-880
 
 ### Key UK Legislation
@@ -97,5 +95,5 @@ This presentation synthesises research from the Bank of England and academic eco
 
 ---
 
-*"The Government's banking arrangements... ensure that all expenditure authorized by Parliament can be settled."*  
+*"The Government's banking arrangements... ensure that all expenditure authorized by Parliament can be settled."*
 — HM Treasury, FOI response 2020

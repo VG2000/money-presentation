@@ -9,7 +9,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/white.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap');
-    
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
     :root {
       --r-background-color: #ffffff;
       --r-main-font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -30,76 +34,83 @@
       --green: #16a34a;
       --red: #dc2626;
     }
-    
+
     .reveal {
       font-weight: 400;
     }
-    
+
     .reveal h1, .reveal h2, .reveal h3 {
       font-family: var(--r-heading-font);
       line-height: 1.2;
     }
-    
+
     .reveal h1 { font-size: 2.4em; }
-    .reveal h2 { font-size: 1.8em; margin-bottom: 0.5em; }
+    .reveal h2 { font-size: 1.8em; margin-top: 0; margin-bottom: 0.5em; }
+    .reveal h2.slide-title { text-align: center; margin-bottom: 0.8em; }
     .reveal h3 { font-size: 1.3em; color: var(--navy); }
-    
+
     .reveal p, .reveal li {
       line-height: 1.5;
     }
-    
+
     .reveal .slides section {
       text-align: left;
-      padding: 20px 60px;
+      padding: 20px 80px 40px 80px;
+      overflow-x: hidden;
+      overflow-y: visible;
     }
-    
+
+    .reveal .slides section.present {
+      top: 0 !important;
+    }
+
     /* Title slide styling */
     .reveal .title-slide {
       text-align: center;
       background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
     }
-    
+
     .reveal .title-slide h1,
     .reveal .title-slide h2,
     .reveal .title-slide p {
       color: white;
     }
-    
+
     .reveal .title-slide h1 {
       font-size: 2.6em;
       margin-bottom: 0.3em;
     }
-    
+
     .reveal .title-slide h2 {
       font-weight: 400;
       opacity: 0.9;
       font-size: 1.4em;
     }
-    
+
     .reveal .title-slide .gold-line {
       width: 120px;
       height: 4px;
       background: var(--gold);
       margin: 30px auto;
     }
-    
+
     .reveal .title-slide .subtitle {
       font-size: 0.9em;
       opacity: 0.7;
       margin-top: 40px;
     }
-    
+
     /* Section header slides */
     .reveal .section-header {
       text-align: center;
       background: var(--navy);
     }
-    
+
     .reveal .section-header h2 {
       color: white;
       font-size: 2.2em;
     }
-    
+
     .reveal .section-header .part-label {
       color: var(--gold);
       font-size: 0.7em;
@@ -108,14 +119,14 @@
       font-family: var(--r-main-font);
       font-weight: 600;
     }
-    
+
     .reveal .section-header .gold-line {
       width: 80px;
       height: 3px;
       background: var(--gold);
       margin: 30px auto;
     }
-    
+
     /* Stat box */
     .stat-box {
       background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
@@ -124,39 +135,42 @@
       text-align: center;
       color: white;
     }
-    
+
     .stat-box .number {
       font-size: 4em;
       font-weight: 700;
       line-height: 1;
       font-family: var(--r-heading-font);
     }
-    
+
     .stat-box .label {
       font-size: 0.9em;
       opacity: 0.85;
       margin-top: 15px;
     }
-    
+
     /* Two column layout */
     .columns {
       display: flex;
       gap: 40px;
       align-items: flex-start;
     }
-    
+
     .column {
       flex: 1;
+      min-width: 0;
     }
-    
+
     .column-narrow {
       flex: 0 0 300px;
+      min-width: 0;
     }
-    
+
     .column-wide {
       flex: 2;
+      min-width: 0;
     }
-    
+
     /* Cards */
     .card {
       background: var(--muted);
@@ -164,29 +178,29 @@
       padding: 24px;
       margin-bottom: 16px;
     }
-    
+
     .card-navy {
       background: var(--navy);
       color: white;
     }
-    
+
     .card-navy h3 { color: white; }
-    
+
     .card-gold {
       background: #fef3c7;
       border-left: 4px solid var(--gold);
     }
-    
+
     .card-green {
       background: #f0fdf4;
       border: 2px solid var(--green);
     }
-    
+
     .card-red {
       background: #fef2f2;
       border: 2px solid #fecaca;
     }
-    
+
     /* Balance sheet tables */
     .balance-sheet {
       border-radius: 12px;
@@ -194,7 +208,7 @@
       border: 1px solid #d1d5db;
       font-size: 0.85em;
     }
-    
+
     .balance-sheet .header {
       background: var(--navy);
       color: white;
@@ -202,24 +216,24 @@
       text-align: center;
       font-weight: 600;
     }
-    
+
     .balance-sheet .header.alt {
       background: var(--muted-text);
     }
-    
+
     .balance-sheet .content {
       display: flex;
     }
-    
+
     .balance-sheet .side {
       flex: 1;
       padding: 16px;
     }
-    
+
     .balance-sheet .side:first-child {
       border-right: 1px solid #e5e5e5;
     }
-    
+
     .balance-sheet .side-label {
       font-size: 0.75em;
       color: var(--muted-text);
@@ -227,21 +241,21 @@
       letter-spacing: 0.5px;
       margin-bottom: 8px;
     }
-    
+
     .balance-sheet .entry {
       margin: 4px 0;
     }
-    
+
     .balance-sheet .entry.positive {
       color: var(--green);
       font-weight: 600;
     }
-    
+
     .balance-sheet .entry.negative {
       color: var(--red);
       font-weight: 600;
     }
-    
+
     /* Process steps */
     .step {
       display: flex;
@@ -249,7 +263,7 @@
       gap: 16px;
       margin-bottom: 16px;
     }
-    
+
     .step-number {
       width: 36px;
       height: 36px;
@@ -262,32 +276,32 @@
       font-weight: 600;
       flex-shrink: 0;
     }
-    
+
     .step-number.gold {
       background: var(--gold);
     }
-    
+
     .step-number.green {
       background: var(--green);
     }
-    
+
     .step-content {
       flex: 1;
       background: var(--muted);
       padding: 14px 18px;
       border-radius: 8px;
     }
-    
+
     .step-content.highlight {
       background: #fef3c7;
       border: 2px solid var(--gold);
     }
-    
+
     .step-content.success {
       background: #f0fdf4;
       border: 2px solid var(--green);
     }
-    
+
     /* Pyramid */
     .pyramid {
       display: flex;
@@ -295,47 +309,47 @@
       align-items: center;
       gap: 8px;
     }
-    
+
     .pyramid-level {
       padding: 16px 24px;
       text-align: center;
       border-radius: 8px;
       color: white;
     }
-    
+
     .pyramid-level.gold {
       background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
       width: 300px;
     }
-    
+
     .pyramid-level.navy {
       background: var(--navy);
       width: 480px;
     }
-    
+
     .pyramid-level.grey {
       background: var(--muted-text);
       width: 660px;
     }
-    
+
     .pyramid-level.light {
       background: var(--muted);
       color: var(--navy);
       border: 1px solid #e5e5e5;
       width: 840px;
     }
-    
+
     .pyramid-level .title {
       font-weight: 600;
       font-size: 1.1em;
     }
-    
+
     .pyramid-level .subtitle {
       font-size: 0.75em;
       opacity: 0.8;
       margin-top: 4px;
     }
-    
+
     /* Flow diagram */
     .flow {
       display: flex;
@@ -344,7 +358,7 @@
       gap: 16px;
       flex-wrap: wrap;
     }
-    
+
     .flow-box {
       background: white;
       border: 1px solid #e5e5e5;
@@ -353,20 +367,20 @@
       text-align: center;
       min-width: 120px;
     }
-    
+
     .flow-box .amount {
       font-size: 1.2em;
       font-weight: 600;
     }
-    
+
     .flow-box .amount.positive { color: var(--green); }
     .flow-box .amount.negative { color: var(--red); }
-    
+
     .flow-arrow {
       font-size: 1.5em;
       color: var(--navy);
     }
-    
+
     /* Highlight box */
     .highlight-box {
       background: var(--navy);
@@ -375,11 +389,11 @@
       border-radius: 12px;
       margin: 20px 0;
     }
-    
+
     .highlight-box strong {
       color: var(--gold);
     }
-    
+
     /* Quote */
     .quote {
       background: var(--muted);
@@ -389,7 +403,7 @@
       font-style: italic;
       margin: 20px 0;
     }
-    
+
     .quote .source {
       font-style: normal;
       font-size: 0.85em;
@@ -397,7 +411,7 @@
       margin-top: 12px;
       font-weight: 600;
     }
-    
+
     /* Badge */
     .badge {
       display: inline-block;
@@ -408,32 +422,32 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
-    
+
     .badge-red {
       background: var(--red);
       color: white;
     }
-    
+
     .badge-green {
       background: var(--green);
       color: white;
     }
-    
+
     .badge-gold {
       background: var(--gold);
       color: white;
     }
-    
+
     /* Footnote */
     .footnote {
       position: absolute;
-      bottom: 20px;
-      left: 60px;
-      right: 60px;
+      bottom: 12px;
+      left: 80px;
+      right: 80px;
       font-size: 0.55em;
       color: var(--muted-text);
     }
-    
+
     /* Agenda item */
     .agenda-item {
       display: flex;
@@ -441,7 +455,7 @@
       align-items: flex-start;
       margin-bottom: 14px;
     }
-    
+
     .agenda-number {
       width: 32px;
       height: 32px;
@@ -455,11 +469,11 @@
       font-weight: 600;
       flex-shrink: 0;
     }
-    
+
     .agenda-number.gold {
       background: var(--gold);
     }
-    
+
     .agenda-text h4 {
       margin: 0;
       font-size: 0.95em;
@@ -467,13 +481,13 @@
       font-family: var(--r-main-font);
       font-weight: 600;
     }
-    
+
     .agenda-text p {
       margin: 4px 0 0 0;
       font-size: 0.8em;
       color: var(--muted-text);
     }
-    
+
     /* System diagram */
     .system-box {
       border: 2px solid var(--navy);
@@ -482,7 +496,7 @@
       background: var(--muted);
       margin-bottom: 12px;
     }
-    
+
     .system-box .box-title {
       font-weight: 600;
       color: var(--navy);
@@ -490,26 +504,26 @@
       margin-bottom: 10px;
       text-align: right;
     }
-    
+
     .system-row {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
     }
-    
+
     .system-item {
       padding: 6px 12px;
       border-radius: 4px;
       font-size: 0.7em;
       font-weight: 500;
     }
-    
+
     .system-item.gold { background: var(--gold); color: white; }
     .system-item.navy { background: var(--navy); color: white; }
     .system-item.grey { background: var(--muted-text); color: white; }
     .system-item.green { background: var(--green); color: white; }
     .system-item.light { background: white; border: 1px solid #d1d5db; }
-    
+
     /* Takeaway */
     .takeaway {
       display: flex;
@@ -517,7 +531,7 @@
       align-items: flex-start;
       margin-bottom: 14px;
     }
-    
+
     .takeaway-number {
       width: 32px;
       height: 32px;
@@ -530,24 +544,24 @@
       font-weight: 700;
       flex-shrink: 0;
     }
-    
+
     .takeaway-content {
       flex: 1;
       background: var(--muted);
       padding: 14px 18px;
       border-radius: 8px;
     }
-    
+
     .takeaway-content.highlight {
       background: #fef3c7;
       border: 2px solid var(--gold);
     }
-    
+
     /* Small text */
     .small { font-size: 0.85em; }
     .smaller { font-size: 0.75em; }
     .muted { color: var(--muted-text); }
-    
+
     /* Speaker notes styling */
     .reveal .speaker-notes {
       font-family: var(--r-main-font);
@@ -559,7 +573,7 @@
 <body>
   <div class="reveal">
     <div class="slides">
-      
+
       <!-- SLIDE 1: Title -->
       <section class="title-slide">
         <div class="gold-line"></div>
@@ -646,7 +660,7 @@
 
       <!-- SLIDE 4: 97% Bank Deposits -->
       <section>
-        <h2>Most Money Is Bank Deposits</h2>
+        <h2 class="slide-title">Most Money Is Bank Deposits</h2>
         <div class="columns">
           <div class="column-narrow">
             <div class="stat-box">
@@ -657,13 +671,13 @@
           </div>
           <div class="column-wide">
             <p>When we talk about "money" in the economy, we're overwhelmingly talking about <strong>numbers in bank accounts</strong> — not physical cash.</p>
-            
-            <div class="card-gold" style="margin: 20px 0;">
-              <p style="font-weight: 600; margin-bottom: 10px;">The composition of UK broad money:</p>
+
+            <div class="card card-gold" style="margin: 20px 0;padding: 12px;">
+              <p style="font-weight: 600;margin-bottom: 10px;">The composition of UK broad money:</p>
               <p class="small">Bank deposits (commercial bank money): <strong>97%</strong></p>
               <p class="small">Currency (notes and coins): <strong>3%</strong></p>
             </div>
-            
+
             <p class="muted">This means understanding money creation requires understanding how these bank deposits come into existence.</p>
           </div>
         </div>
@@ -675,12 +689,12 @@
 
       <!-- SLIDE 5: Two Types of Money -->
       <section>
-        <h2>Two Types of Money</h2>
+         <h2 class="slide-title">Two Types of Money</h2>
         <div class="columns">
-          <div class="column">
-            <div class="card-navy" style="height: 100%;">
+          <div class="column" style="align-items: stretch;">
+            <div class="card card-navy" style="height: 100%; border: 2px solid var(--navy);">
               <h3 style="display: flex; align-items: center; gap: 12px;">
-                <span style="width: 40px; height: 40px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2em;">£</span>
+                <span style="width: 50px; height: 50px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2em;">£</span>
                 Central Bank Money
               </h3>
               <p class="small">Money issued by the Bank of England</p>
@@ -695,7 +709,7 @@
           <div class="column">
             <div class="card" style="height: 100%; border: 2px solid #e5e5e5;">
               <h3 style="display: flex; align-items: center; gap: 12px;">
-                <span style="width: 40px; height: 40px; background: var(--muted-text); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2em;">£</span>
+                <span style="width: 50px; height: 50px; background: var(--muted-text); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2em;">£</span>
                 Commercial Bank Money
               </h3>
               <p class="small">Money created by commercial banks</p>
@@ -708,7 +722,7 @@
             </div>
           </div>
         </div>
-        <div class="card-gold" style="margin-top: 20px;">
+        <div class="card card-gold" style="margin-top: 20px;">
           <strong>Key insight:</strong> Bank deposits are IOUs from commercial banks to their customers — they are created by banks, not by the central bank.
         </div>
         <aside class="notes">
@@ -718,7 +732,7 @@
 
       <!-- SLIDE 6: Money Hierarchy -->
       <section>
-        <h2>The Money Hierarchy</h2>
+        <h2 class="slide-title">The Money Hierarchy</h2>
         <div class="pyramid">
           <div class="pyramid-level gold">
             <p class="smaller" style="opacity: 0.8;">Ultimate Authority</p>
@@ -763,8 +777,8 @@
       <section>
         <h2><span class="badge badge-red">Common Misconception</span></h2>
         <h2>Banks Lend Out Deposits</h2>
-        <div class="card-red" style="margin: 20px 0;">
-          <p class="muted" style="font-style: italic; margin-bottom: 16px;">"Banks collect deposits from savers and then lend those funds to borrowers..."</p>
+        <div class="card-red" style="margin: 12px 0; padding: 16px;">
+          <p class="muted" style="font-style: italic; margin-bottom: 12px;">"Banks collect deposits from savers and then lend those funds to borrowers..."</p>
           <div class="flow">
             <div class="flow-box">
               <p style="font-size: 1.5em;">🏠</p>
@@ -783,11 +797,11 @@
             </div>
           </div>
         </div>
-        <div class="quote">
-          "One common misconception is that banks act simply as intermediaries, lending out the deposits that savers place with them... In fact, when households choose to save more money in bank accounts, those deposits come simply at the expense of deposits that would have otherwise gone to companies in payment for goods and services."
+        <div class="quote" style="margin: 16px 0; padding: 18px;">
+          "One common misconception is that banks act simply as intermediaries, lending out the deposits that savers place with them..."
           <p class="source">— Bank of England, Quarterly Bulletin 2014 Q1</p>
         </div>
-        <p class="footnote">Saving does not by itself increase the deposits or 'funds available' for banks to lend.</p>
+        <p class="footnote">Saving does not increase the deposits or 'funds available' for banks to lend.</p>
         <aside class="notes">
           The common misconception is that banks are intermediaries — collecting deposits from savers and lending them out. But the Bank of England explicitly states this is wrong. Saving doesn't increase funds available for lending; it just shifts deposits from one place to another.
         </aside>
@@ -797,8 +811,8 @@
       <section>
         <h2><span class="badge badge-green">The Reality</span></h2>
         <h2>Loans Create Deposits</h2>
-        <div class="card-green" style="margin: 20px 0;">
-          <p style="font-weight: 600; margin-bottom: 16px;">When a bank makes a loan, it simultaneously creates a matching deposit:</p>
+        <div class="card-green" style="margin: 12px 0; padding: 16px;">
+          <p style="font-weight: 600; margin-bottom: 10px;">When a bank makes a loan, it simultaneously creates a matching deposit:</p>
           <div class="columns" style="gap: 24px;">
             <div class="column">
               <div class="balance-sheet">
@@ -836,11 +850,11 @@
             </div>
           </div>
         </div>
-        <div class="card-gold">
+        <div class="card card-gold" style="padding: 14px;">
           <em>"Whenever a bank makes a loan, it simultaneously creates a matching deposit in the borrower's bank account, thereby creating new money."</em>
-          <p class="smaller" style="color: var(--gold); margin-top: 8px; font-weight: 600;">— Bank of England (2014)</p>
+          <span class="smaller" style="color: var(--gold); margin-left: 8px; font-weight: 600;">— Bank of England (2014)</span>
         </div>
-        <p class="footnote">This is sometimes called "fountain pen money" — created at the stroke of a banker's pen when approving loans.</p>
+        <p class="footnote">This is sometimes called "fountain pen money" — created at the stroke of a banker's pen.</p>
         <aside class="notes">
           Here's how it actually works. When a bank makes a loan, it doesn't transfer existing money — it creates new money. The bank adds a loan asset to its balance sheet and simultaneously creates a matching deposit liability. The borrower gets a new deposit asset and a loan liability. New money has been created from nothing.
         </aside>
@@ -850,8 +864,8 @@
       <section>
         <h2><span class="badge badge-red">Common Misconception</span></h2>
         <h2>The "Money Multiplier"</h2>
-        <div class="card-red" style="margin: 20px 0;">
-          <p class="muted small" style="font-style: italic; margin-bottom: 16px;">"The central bank controls the money supply by setting the quantity of reserves, which banks then 'multiply up' into loans and deposits..."</p>
+        <div class="card-red" style="margin: 10px 0; padding: 14px;">
+          <p class="muted small" style="font-style: italic; margin-bottom: 10px;">"The central bank controls the money supply by setting the quantity of reserves, which banks then 'multiply up'..."</p>
           <div class="flow">
             <div class="flow-box">
               <p class="smaller muted">Central Bank</p>
@@ -872,11 +886,11 @@
             </div>
           </div>
         </div>
-        <div class="quote">
+        <div class="quote" style="margin: 12px 0; padding: 14px;">
           "While the money multiplier theory can be a useful way of introducing money and banking in economic textbooks, it is not an accurate description of how money is created in reality."
-          <p class="source">— Bank of England (2014)</p>
+          <span class="source" style="margin-left: 8px;">— Bank of England (2014)</span>
         </div>
-        <div class="columns" style="margin-top: 16px;">
+        <div class="columns" style="margin-top: 10px;">
           <div class="column card">
             <p class="small"><strong style="color: var(--navy);">Reserves don't constrain lending</strong></p>
             <p class="smaller muted">Banks decide how much to lend based on profitable opportunities. They obtain reserves afterwards.</p>
@@ -895,8 +909,8 @@
       <!-- SLIDE 11: Constraints on Lending -->
       <section>
         <h2>What Actually Constrains Bank Lending?</h2>
-        <p class="muted">Banks can't create unlimited money. Three sets of constraints limit money creation:</p>
-        <div class="columns" style="margin-top: 20px;">
+        <p class="muted small">Banks can't create unlimited money. Three sets of constraints limit money creation:</p>
+        <div class="columns" style="margin-top: 12px; gap: 20px;">
           <div class="column card">
             <div style="width: 40px; height: 40px; background: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; margin-bottom: 12px;">1</div>
             <h3 style="font-size: 1em;">Market Forces</h3>
@@ -911,7 +925,7 @@
             <p class="smaller muted">• Loan repayments destroy money</p>
             <p class="smaller muted">• "Reflux" of unwanted money</p>
           </div>
-          <div class="column card-gold" style="border: 2px solid var(--gold);">
+          <div class="column card card-gold" style="border: 2px solid var(--gold);">
             <div style="width: 40px; height: 40px; background: var(--gold); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; margin-bottom: 12px;">3</div>
             <h3 style="font-size: 1em;">Monetary Policy</h3>
             <p class="smaller">• Interest rates affect loan demand</p>
@@ -919,8 +933,8 @@
             <p class="smaller"><strong>• Ultimate constraint</strong></p>
           </div>
         </div>
-        <div class="card-green" style="margin-top: 20px;">
-          <strong>The key point:</strong> Monetary policy is the <em>ultimate</em> constraint on money creation. The Bank of England influences lending through interest rates, not by controlling the quantity of reserves.
+        <div class="card card-green" style="margin-top: 12px; padding: 14px;">
+          <strong>The key point:</strong> Monetary policy is the <em>ultimate</em> constraint. The BoE influences lending through interest rates, not by controlling reserves.
         </div>
         <p class="footnote">Source: Bank of England (2014) — see also Farag, Harland and Nixon (2013) on capital and liquidity requirements</p>
         <aside class="notes">
@@ -949,11 +963,11 @@
             <strong>Loan repayment destroys money.</strong> Just as lending creates deposits, repayment extinguishes them.
           </div>
         </div>
-        <div class="highlight-box" style="margin-top: 24px;">
-          <p style="font-size: 0.95em; font-style: italic;">"Most of the money in circulation is created, not by the printing presses of the Bank of England, but by the commercial banks themselves: banks create money whenever they lend to someone in the economy or buy an asset from consumers."</p>
-          <p style="color: var(--gold); font-size: 0.85em; margin-top: 12px; font-weight: 600;">— Bank of England (2014)</p>
+        <div class="highlight-box" style="margin-top: 16px; padding: 18px;">
+          <p style="font-size: 0.9em; font-style: italic;">"Most of the money in circulation is created, not by the printing presses of the Bank of England, but by the commercial banks themselves."</p>
+          <span style="color: var(--gold); font-size: 0.8em; font-weight: 600;">— Bank of England (2014)</span>
         </div>
-        <p class="muted" style="text-align: center; margin-top: 20px;">But what about <strong>government</strong> spending? How does the state create and inject money into the economy?</p>
+        <p class="muted small" style="text-align: center; margin-top: 14px;">But what about <strong>government</strong> spending? How does the state create and inject money into the economy?</p>
         <aside class="notes">
           To summarise Part 2: banks create money through lending, not by intermediating deposits. The money multiplier doesn't describe reality. And loan repayment destroys money just as lending creates it. Now let's turn to how the government creates money.
         </aside>
@@ -987,7 +1001,7 @@
               <p class="smaller muted">• Source of government securities issuance</p>
               <p class="smaller muted">• Destination for most government revenue</p>
             </div>
-            <div class="card-gold" style="margin-top: 16px;">
+            <div class="card card-gold" style="margin-top: 16px;">
               <strong>Key insight:</strong> The Consolidated Fund acts as a <em>sovereign line of credit</em> that only Parliament can authorize drawing upon.
             </div>
           </div>
@@ -1020,57 +1034,8 @@
       <!-- SLIDE 15: System Architecture -->
       <section>
         <h2>The UK Government's Financial Architecture</h2>
-        <div class="system-box">
-          <p class="box-title">HM Treasury</p>
-          <div class="columns" style="gap: 12px;">
-            <div>
-              <p class="smaller muted" style="margin-bottom: 6px;">Central Funds</p>
-              <div class="system-row" style="flex-direction: column; gap: 4px;">
-                <span class="system-item gold">Consolidated Fund</span>
-                <span class="system-item navy">National Loans Fund</span>
-                <span class="system-item grey">Contingencies Fund</span>
-              </div>
-            </div>
-            <div style="flex: 2; background: #e8f4f8; border: 1px solid #b8d4e3; border-radius: 6px; padding: 12px;">
-              <p class="smaller muted" style="margin-bottom: 6px;">Government Banking Service</p>
-              <div class="system-row">
-                <span class="system-item light">Dept. 1</span>
-                <span class="system-item light">Dept. 2</span>
-                <span class="system-item light">Dept. n</span>
-                <span class="system-item light">HMRC Receipt</span>
-              </div>
-              <div class="system-row" style="margin-top: 6px;">
-                <span class="system-item" style="background: #d4edda; color: #155724;">Paymaster General Account</span>
-              </div>
-            </div>
-            <div>
-              <span class="system-item grey" style="display: block; text-align: center; padding: 12px;">Debt Management<br>Account</span>
-            </div>
-          </div>
-        </div>
-        <p style="text-align: center; font-size: 1.3em; color: var(--navy);">↓↑</p>
-        <div style="background: var(--navy); border-radius: 8px; padding: 14px; margin-bottom: 12px;">
-          <p class="small" style="color: white; font-weight: 600; margin-bottom: 8px;">Bank of England — Sterling Accounts</p>
-          <div class="system-row">
-            <span class="system-item gold">CF Account</span>
-            <span class="system-item" style="background: var(--navy-light); color: white;">NLF Account</span>
-            <span class="system-item" style="background: var(--navy-light); color: white;">Ways & Means</span>
-            <span class="system-item" style="background: var(--navy-light); color: white;">DMA Account</span>
-            <span class="system-item green">Bank Reserve Accounts</span>
-          </div>
-        </div>
-        <div class="columns" style="gap: 12px;">
-          <div class="card-green" style="flex: 1; padding: 12px;">
-            <p class="small" style="color: var(--green); font-weight: 600;">Commercial Banks</p>
-            <p class="smaller muted">Reserves at BoE • Customer Deposits</p>
-          </div>
-          <div style="font-size: 1.3em; color: var(--green); align-self: center;">↔</div>
-          <div class="card" style="flex: 1; padding: 12px;">
-            <p class="small muted" style="font-weight: 600;">Households, Businesses, NBFIs</p>
-            <p class="smaller muted">Bank deposits • Currency</p>
-          </div>
-        </div>
-        <p class="footnote">Adapted from Berkeley et al. (2025) "The Self-Financing State", Figure 1</p>
+        <img src="image/system_map.png" alt="UK Government Financial Architecture" style="width: 100%; max-width: 1100px; display: block; margin: 0 auto;">
+        <p class="footnote">Source: Berkeley et al. (2025) "The Self-Financing State", Figure 1</p>
         <aside class="notes">
           This diagram shows the institutional architecture. At the top is HM Treasury with its central funds and departmental accounts in the Government Banking Service. These connect to accounts at the Bank of England. Below that are commercial banks with their reserve accounts, connected to the public who hold deposits. All government transactions flow through this structure.
         </aside>
@@ -1107,7 +1072,7 @@
             <p class="smaller muted">• Defence budget</p>
           </div>
         </div>
-        <div class="card-gold" style="margin-top: 20px;">
+        <div class="card card-gold" style="margin-top: 20px;">
           <strong>Key point:</strong> Individual departments cannot spend without Parliamentary authorization. The Comptroller and Auditor General verifies each requisition before granting Treasury a "credit" on the Consolidated Fund.
         </div>
         <p class="footnote">Two Supply and Appropriation Acts typically passed each year (July and March)</p>
@@ -1173,11 +1138,11 @@
             <p>This connects current spending to <strong>"all the revenues to be received in the future"</strong> — framing expenditure as credit advanced on the security of future tax revenues.</p>
           </div>
           <div class="column-narrow">
-            <div class="card-green" style="margin-bottom: 12px;">
+            <div class="card card-green" style="margin-bottom: 12px;">
               <p class="small" style="color: var(--green); font-weight: 600;">What This Means</p>
               <p class="smaller muted">All spending arises as <strong>new money advanced as credit</strong>, not from taxation or borrowing.</p>
             </div>
-            <div class="card-red">
+            <div class="card card-red">
               <p class="small" style="color: var(--red); font-weight: 600;">No "Intertemporal Budget Constraint"</p>
               <p class="smaller muted">There is no ex-ante limit on current or future spending from the accounting mechanics.</p>
             </div>
@@ -1236,11 +1201,11 @@
           </div>
         </div>
         <div class="columns">
-          <div class="column card-gold">
+          <div class="column card card-gold">
             <p><strong>Taxes destroy money</strong></p>
             <p class="smaller muted">Taxation credits the CF account, offsetting past monetary injections from spending. Money leaves the private sector.</p>
           </div>
-          <div class="column card-green">
+          <div class="column card card-green">
             <p><strong>Settled in BoE money</strong></p>
             <p class="smaller muted">Taxes are finally settled using Bank of England money (reserves), not commercial bank deposits.</p>
           </div>
@@ -1257,7 +1222,7 @@
       <!-- SLIDE 21: Debt Issuance -->
       <section>
         <h2>Debt Issuance: What It's Actually For</h2>
-        <div class="card-red" style="margin-bottom: 20px; position: relative;">
+        <div class="card card-red" style="margin-bottom: 20px; position: relative;">
           <span class="badge badge-red" style="position: absolute; top: 12px; right: 16px;">Policy Choice</span>
           <p class="small" style="font-weight: 600;">The "Full Funding Rule"</p>
           <p class="smaller muted" style="font-style: italic; margin-top: 8px;">"An overarching requirement of debt management policy is that the government fully finances its projected financing requirement each year through the sale of debt."</p>
@@ -1271,7 +1236,7 @@
             <p class="smaller muted">• Bond sales drain reserves</p>
             <p class="smaller muted">• Keeps interbank rate on target</p>
           </div>
-          <div class="column card-green">
+          <div class="column card card-green">
             <p class="small" style="color: var(--green); font-weight: 600;">Current Purpose (post-QE)</p>
             <p class="smaller muted">Under the "floor" system with excess reserves, debt issuance primarily serves different functions:</p>
             <p class="smaller" style="margin-top: 12px;">• Provides <strong>safe store of value</strong></p>
@@ -1279,7 +1244,7 @@
             <p class="smaller">• Supports financial sector liquidity needs</p>
           </div>
         </div>
-        <div class="card-gold" style="margin-top: 16px;">
+        <div class="card card-gold" style="margin-top: 16px;">
           <strong>The paradox:</strong> QE removes gilts from private sector balance sheets, while the full funding rule requires continued issuance. These policies work at cross-purposes.
         </div>
         <div class="highlight-box">
@@ -1305,7 +1270,7 @@
       <!-- SLIDE 23: What Findings Mean -->
       <section>
         <h2>What These Findings Mean</h2>
-        <div class="card-red" style="margin-bottom: 16px;">
+        <div class="card card-red" style="margin-bottom: 16px;">
           <p class="small" style="color: var(--red); font-weight: 600;">Constraints That Are NOT Valid</p>
           <div class="columns" style="margin-top: 12px; gap: 16px;">
             <div class="column">
@@ -1322,7 +1287,7 @@
             </div>
           </div>
         </div>
-        <div class="card-green" style="margin-bottom: 16px;">
+        <div class="card card-green" style="margin-bottom: 16px;">
           <p class="small" style="color: var(--green); font-weight: 600;">The REAL Constraints</p>
           <div class="columns" style="margin-top: 12px; gap: 16px;">
             <div class="column">
@@ -1354,7 +1319,7 @@
       <!-- SLIDE 24: Central Bank Independence -->
       <section>
         <h2>Central Bank "Independence"</h2>
-        <div class="card-gold" style="margin-bottom: 20px;">
+        <div class="card card-gold" style="margin-bottom: 20px;">
           <p>The Bank of England is <strong>never independent</strong> in the sense that it can refuse to facilitate public expenditure.</p>
         </div>
         <div class="columns">
@@ -1370,7 +1335,7 @@
           </div>
         </div>
         <div class="columns" style="margin-top: 16px;">
-          <div class="column card-green">
+          <div class="column card card-green">
             <p class="small" style="color: var(--green); font-weight: 600;">What "Independence" Actually Means</p>
             <p class="smaller muted">Operational independence for <em>monetary policy</em> (setting interest rates) — not independence from facilitating Parliamentary-authorized spending.</p>
           </div>
@@ -1429,7 +1394,7 @@
       <!-- SLIDE 26: Questions -->
       <section>
         <h2>Questions for Discussion</h2>
-        <div class="card-gold" style="margin-bottom: 16px;">
+        <div class="car card-gold" style="margin-bottom: 16px;">
           <p>If government spending creates money and taxation destroys it, how should we think about "balancing the budget"?</p>
         </div>
         <div class="card" style="margin-bottom: 16px;">
@@ -1441,7 +1406,7 @@
         <div class="card" style="margin-bottom: 16px;">
           <p>Should the "full funding rule" be reviewed given the current monetary policy framework?</p>
         </div>
-        <div class="card-gold">
+        <div class="card card-gold">
           <p>How might improved public understanding of these mechanisms change the policy debate?</p>
         </div>
         <aside class="notes">
@@ -1513,7 +1478,10 @@
       transitionSpeed: 'fast',
       width: 1280,
       height: 720,
-      margin: 0.04,
+      margin: 0,
+      minScale: 0.1,
+      maxScale: 1.5,
+      center: false,
       plugins: [ RevealNotes ],
       // PDF export settings
       pdfMaxPagesPerSlide: 1,
