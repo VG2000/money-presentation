@@ -35,6 +35,38 @@
       --red: #dc2626;
     }
 
+        /* Full outline variants */
+    .border-red   { border: 2px solid var(--red) !important; }
+    .border-green { border: 2px solid var(--green) !important; }
+    .border-gold  { border: 2px solid var(--gold) !important; }
+    .border-navy  { border: 2px solid var(--navy) !important; }
+
+    /* Make card corners consistent */
+    .card.border-red,
+    .card.border-green,
+    .card.border-gold,
+    .card.border-navy {
+      border-radius: 10px !important;
+    }
+
+    /* Left accent border utilities */
+    .left-accent-red   { border-left: 4px solid var(--red) !important; }
+    .left-accent-green { border-left: 4px solid var(--green) !important; }
+    .left-accent-gold  { border-left: 4px solid var(--) !important; }
+    .left-accent-navy  { border-left: 4px solid var(--navy) !important; }
+
+    /* Make these cards feel unified */
+    .card.left-accent-red,
+    .card.left-accent-green,
+    .card.left-accent-gold,
+    .card.left-accent-navy {
+      border-radius: 10px !important;
+      border-top: none !important;
+      border-right: none !important;
+      border-bottom: none !important;  /* ensures only the LHS line shows */
+    }
+
+
     .reveal {
       font-weight: 400;
     }
@@ -456,6 +488,15 @@
       color: white;
     }
 
+    /* Slide note */
+    .slide-note {
+  font-size: 0.55em;
+  color: var(--muted-text);
+  margin-top: 12px;
+  text-align: center;
+  line-height: 1.35;
+}
+
     /* Footnote */
     .footnote {
     position: absolute;
@@ -718,6 +759,26 @@ section[data-slide="money-multiplier"] .columns .card p {
   margin: 4px 0 !important;
   line-height: 1.35;
 }
+
+/* Slide 14 — Central Funds Slide */
+.central-funds-column {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;          /* spacing between boxes */
+  height: 100%;       /* allow equal stretching */
+}
+
+.central-fund-box {
+  flex: 1;            /* <-- makes all boxes equal height */
+  padding: 18px 12px;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* vertically center text */
+}
+
 
 /* ------------------------------------------ */
 /* COMPACT SLIDE 16 — Parliament Authorizes   */
@@ -1039,6 +1100,183 @@ section[data-slide="money-multiplier"] .columns .card p {
   width: 100%;
 }
 
+/* Slide 25 – tighter vertical layout */
+.sectoral-implications-slide {
+  padding-top: 10px !important;
+  padding-bottom: 50px !important;   /* was ~40px */
+  font-size: 0.95em;                  /* tiny shrink without hurting readability */
+}
+
+/* Reduce vertical spacing between cards */
+.sectoral-implications-slide .columns {
+  margin-top: 10px !important;
+  gap: 16px !important;
+}
+
+.sectoral-implications-slide .card {
+  padding: 12px 14px !important;      /* compact card layout */
+}
+
+.sectoral-implications-slide .highlight-box {
+  padding: 12px 14px !important;
+  margin-top: 14px !important;
+}
+
+
+/* Slide 27 – compact findings layout */
+.reveal .slides section.findings-slide {
+  font-size: 0.9em;            /* shrink all body text a bit */
+  padding-bottom: 38px;        /* leaves room for bottom content / future footnote */
+}
+
+/* Cards: less air */
+.findings-slide .card {
+  padding: 10px 12px;          /* down from default 18–24px */
+  margin-bottom: 10px;
+}
+
+/* Inner columns inside those cards */
+.findings-slide .card .columns {
+  margin-top: 8px !important;
+  gap: 12px;
+}
+
+.findings-slide .card p {
+  margin: 4px 0;
+}
+
+/* Highlight band */
+.findings-slide .highlight-box {
+  margin-top: 10px;
+  padding: 10px 12px;
+  font-size: 0.9em;
+}
+
+/* Bottom quote box */
+.findings-slide .compact-quote {
+  margin-top: 10px;
+  padding: 8px 12px;
+  font-size: 0.8em;
+}
+
+/* Slide 28 – compact central bank independence layout */
+.reveal .slides section.independence-slide {
+  font-size: 0.9em;          /* slightly smaller text overall */
+  padding-bottom: 40px;      /* leave room for footnote */
+}
+
+/* Tighten heading spacing */
+.independence-slide h2 {
+  margin-bottom: 0.45em;
+}
+
+/* Generic cards on this slide */
+.independence-slide .card {
+  padding: 10px 12px;        /* less padding inside cards */
+  margin-bottom: 10px;       /* less gap between blocks */
+}
+
+/* Top gold banner card */
+.independence-slide .card-gold {
+  padding: 10px 12px;
+}
+
+/* Columns and inner spacing */
+.independence-slide .columns {
+  margin-top: 6px;
+  gap: 14px;
+}
+
+.independence-slide .card p {
+  margin: 4px 0;             /* tighter paragraph spacing */
+}
+
+/* Highlight strip */
+.independence-slide .highlight-box {
+  margin-top: 10px;
+  padding: 10px 12px;
+  font-size: 0.9em;
+}
+
+/* Footnote spacing & size */
+.independence-slide .footnote {
+  margin-top: 10px;
+  font-size: 0.55em;
+}
+
+
+/* slide 29 – Discussion Items */
+.discussion-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.discussion-number {
+  background: var(--navy);
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.discussion-content {
+  padding: 14px 18px;
+  border: 2px solid var(--navy);
+  background: var(--muted);
+  border-radius: 8px;
+}
+
+.discussion-content.highlight {
+  background: var(--gold-light);
+  border-color: var(--gold);
+}
+
+
+/* -----------------------------------------------------------
+   SLIDE 30 — References Slide Formatting
+----------------------------------------------------------- */
+
+.references-slide {
+  --ref-h2-size: 1.6rem;      /* default ~2.0rem */
+  --ref-heading-size: 0.85rem; /* category titles */
+  --ref-small-size: 0.82rem;   /* author + year lines */
+  --ref-body-size: 0.75rem;    /* article titles, muted text */
+
+  padding-top: 10px !important;
+}
+
+.references-slide h2 {
+  font-size: var(--ref-h2-size) !important;
+  margin-bottom: 10px !important;
+}
+
+.references-slide .column p.small,
+.references-slide .column p .small {
+  font-size: var(--ref-small-size) !important;
+}
+
+.references-slide .column p.smaller,
+.references-slide .column p .smaller {
+  font-size: var(--ref-body-size) !important;
+  line-height: 1.25 !important;
+}
+
+.references-slide .column p[style*="uppercase"] {
+  font-size: var(--ref-heading-size) !important;
+}
+
+.references-slide .card {
+  padding: 10px 12px !important;
+  margin-bottom: 8px !important;
+}
+
 
 
   </style>
@@ -1167,6 +1405,54 @@ section[data-slide="money-multiplier"] .columns .card p {
         </aside>
       </section>
 
+      <!-- Slide 4a 97% money myth-->
+     <section>
+  <h2 class="slide-title">Why the “97%” Figure Is Misunderstood</h2>
+
+  <div class="card card-gold" style="margin-bottom: 14px;">
+    <p><strong>Fact:</strong> 97% of the money we hold is commercial bank deposits.</p>
+  </div>
+
+  <p>But this is a <em>stock</em> measure — it tells us what type of money people hold today,
+  not <em>how that money came into existence</em>.</p>
+
+  <div class="columns" style="margin-top: 16px; gap: 20px;">
+    <div class="column card border-navy">
+      <p style="color: var(--navy); font-weight: 600;">Commercial Bank Lending</p>
+      <p class="smaller muted">
+        When banks make loans, they create matching deposits.
+        This is a major source of money during economic expansions.
+      </p>
+    </div>
+
+    <div class="column card border-navy">
+      <p style="color: var(--navy); font-weight: 600;">Government Spending</p>
+      <p class="smaller muted">
+        Every payment from HM Treasury increases deposits in the commercial
+        banking system. Government deficits are therefore a second source of
+        money creation.
+      </p>
+    </div>
+  </div>
+
+  <div class="card card-gold key-insight" style="margin-top: 20px;">
+    <strong>Key insight:</strong>
+    “97%” describes the form money takes (bank deposits),
+    not the origin of those deposits.
+    Both <strong>private lending</strong> and <strong>government spending</strong>
+    expand the money supply.
+  </div>
+
+  <p class="slide-note" >
+    No chart is shown here because neither the Bank of England, ONS, nor HM Treasury publish a
+    dataset that splits money creation between commercial lending and government spending.
+    Monetary statistics record bank lending as increases in broad money, while government spending
+    is recorded as expenditure rather than “money creation,” even though it injects deposits and
+    reserves into the system. As a result, there is no official, directly comparable series for the two flows.
+  </p>
+</section>
+
+
       <!-- SLIDE 5: Two Types of Money -->
       <section>
          <h2 class="slide-title">Two Types of Money</h2>
@@ -1247,7 +1533,7 @@ section[data-slide="money-multiplier"] .columns .card p {
         <p class="part-label">Part Two</p>
         <h2>Commercial Bank<br>Money Creation</h2>
         <div class="gold-line"></div>
-        <p style="color: white; opacity: 0.7; margin-top: 24px;">How 97% of our money comes into existence</p>
+
         <aside class="notes">
           Now let's examine how commercial banks actually create the money that makes up 97% of our money supply.
         </aside>
@@ -1395,8 +1681,8 @@ section[data-slide="money-multiplier"] .columns .card p {
             <div style="width: 40px; height: 40px; background: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; margin-bottom: 12px;">1</div>
             <h3 style="font-size: 1em;">Market Forces</h3>
             <p class="smaller muted">• Profitability in competitive market</p>
-            <p class="smaller muted">• Must attract deposits to fund lending</p>
-            <p class="smaller muted">• Credit risk assessment</p>
+            <p class="smaller muted">• Capital constraints and risk assessment</p>
+            <p class="smaller muted">• Liquidity and funding management <em>after</em> lending (not a prerequisite to lend)</p>
           </div>
           <div class="column card card-gray">
             <div style="width: 40px; height: 40px; background: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; margin-bottom: 12px;">2</div>
@@ -1485,26 +1771,35 @@ section[data-slide="money-multiplier"] .columns .card p {
               <strong>Key insight:</strong> The Consolidated Fund acts as a <em>sovereign line of credit</em> that only Parliament can authorize drawing upon.
             </div>
           </div>
-          <div class="column-narrow">
-            <p class="smaller muted" style="text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;">The Central Funds</p>
-            <div style="background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); padding: 14px; border-radius: 8px; text-align: center; color: white; margin-bottom: 8px;">
-              <p class="small" style="font-weight: 600;">Consolidated Fund</p>
-              <p class="smaller" style="opacity: 0.7;">"Current account"</p>
-            </div>
-            <div style="background: var(--muted-text); padding: 12px; border-radius: 8px; text-align: center; color: white; margin-bottom: 8px;">
-              <p class="small" style="font-weight: 600;">National Loans Fund</p>
-              <p class="smaller" style="opacity: 0.7;">Lending & borrowing</p>
-            </div>
-            <div style="background: #737373; padding: 12px; border-radius: 8px; text-align: center; color: white; margin-bottom: 8px;">
-              <p class="small" style="font-weight: 600;">Contingencies Fund</p>
-              <p class="smaller" style="opacity: 0.7;">Urgent expenditure</p>
-            </div>
-            <div style="background: #a1a1aa; padding: 12px; border-radius: 8px; text-align: center; color: white;">
-              <p class="small" style="font-weight: 600;">Debt Management Account</p>
-              <p class="smaller" style="opacity: 0.7;">Cash management</p>
-            </div>
-          </div>
-        </div>
+        <div class="column-narrow central-funds-column">
+  <p class="smaller muted" style="
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: center;
+      margin-bottom: 4px;
+  ">The Central Funds</p>
+
+  <!-- Consolidated Fund -->
+  <div class="central-fund-box"
+       style="background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);">
+    <p class="small" style="font-weight: 600; margin-bottom: 4px;">Consolidated Fund</p>
+    <p class="smaller" style="opacity: 0.75;">“Current account”</p>
+  </div>
+
+  <!-- National Loans Fund -->
+  <div class="central-fund-box"
+       style="background: #6E6E6E;">
+    <p class="small" style="font-weight: 600; margin-bottom: 4px;">National Loans Fund</p>
+    <p class="smaller" style="opacity: 0.75;">Lending & borrowing</p>
+  </div>
+
+  <!-- Contingencies Fund -->
+  <div class="central-fund-box"
+       style="background: #8A8A8A;">
+    <p class="small" style="font-weight: 600; margin-bottom: 4px;">Contingencies Fund</p>
+    <p class="smaller" style="opacity: 0.75;">Urgent expenditure</p>
+  </div>
+</div>
         <p class="footnote">Governed by Exchequer and Audit Departments Act 1866, National Loans Act 1968</p>
         <aside class="notes">
           The Consolidated Fund is the heart of UK public finance, established in 1787. It's the origin of all government spending and destination of most revenue. Crucially, it functions as a sovereign line of credit that only Parliament can authorize. Several related funds work together, including the National Loans Fund for borrowing operations.
@@ -1515,7 +1810,7 @@ section[data-slide="money-multiplier"] .columns .card p {
       <section>
         <h2>The UK Government's Financial Architecture</h2>
         <img src="image/system_map.png" alt="UK Government Financial Architecture" style="width: 100%; max-width: 950px; display: block; padding-bottom: 20px; margin: 0 auto;">
-        <p class="footnote">Source: Berkeley et al. (2025) "The Self-Financing State", Figure 1</p>
+        <p class="footnote">Source: Berkeley et al. (2025), Figure 1</p>
         <aside class="notes">
           This diagram shows the institutional architecture. At the top is HM Treasury with its central funds and departmental accounts in the Government Banking Service. These connect to accounts at the Bank of England. Below that are commercial banks with their reserve accounts, connected to the public who hold deposits. All government transactions flow through this structure.
         </aside>
@@ -1597,7 +1892,7 @@ section[data-slide="money-multiplier"] .columns .card p {
         <div class="highlight-box">
           <strong style="color: var(--gold);">Critical insight:</strong> The allocation of spending within Government Banking Service is conducted <em>entirely by balance sheet expansion</em> and is contingent only upon the authority of Parliament. No pre-existing funds are required.
         </div>
-        <p class="footnote">Source: Berkeley et al. (2025) — Full accounting tables available in appendix</p>
+        <p class="footnote">Source: Berkeley et al. (2025)</p>
         <aside class="notes">
           Here's the step-by-step spending mechanism. Parliament authorizes, Treasury requisitions, the Comptroller grants credit, then the Bank of England debits the Consolidated Fund and credits government accounts. When spent to the private sector, this becomes commercial bank reserves and deposits. The key insight: this is all balance sheet expansion. No pre-existing funds are required.
         </aside>
@@ -1706,27 +2001,27 @@ section[data-slide="money-multiplier"] .columns .card p {
   </div>
 
   <div class="flow">
-    <div class="flow-box">
-      <p class="smaller muted">Taxpayer</p>
+    <div class="flow-box" style="background: var(--navy-light); color: white; border-color: var(--navy-light);">
+      <p class="smaller" style="opacity: 0.8;">Taxpayer</p>
       <p class="amount negative">–£100</p>
-      <p class="smaller muted">bank deposit</p>
+      <p class="smaller" style="opacity: 0.8;">bank deposit</p>
     </div>
     <div class="flow-arrow">→</div>
-    <div class="flow-box">
-      <p class="smaller muted">Commercial Bank</p>
+    <div class="flow-box" style="background: var(--navy-light); color: white; border-color: var(--navy-light);">
+      <p class="smaller" style="opacity: 0.8;">Commercial Bank</p>
       <p class="amount negative">–£100</p>
-      <p class="smaller muted">reserves</p>
+      <p class="smaller" style="opacity: 0.8;">reserves</p>
     </div>
     <div class="flow-arrow">→</div>
-    <div class="flow-box">
-      <p class="smaller muted">HMRC → BoE</p>
+    <div class="flow-box" style="background: var(--navy-light); color: white; border-color: var(--navy-light);">
+      <p class="smaller" style="opacity: 0.8;">HMRC → BoE</p>
       <p class="amount positive">+£100</p>
-      <p class="smaller muted">HMRC account</p>
+       <p class="smaller" style="opacity: 0.8;">HMRC account</p>
     </div>
     <div class="flow-arrow">→</div>
     <div class="flow-box" style="background: var(--gold); color: white; border-color: var(--gold);">
       <p class="smaller" style="opacity: 0.8;">Consolidated Fund</p>
-      <p class="amount" style="color: white;">+£100</p>
+      <p class="amount positive" style="color: white;">+£100</p>
       <p class="smaller" style="opacity: 0.8;">credits CF</p>
     </div>
   </div>
@@ -1752,10 +2047,6 @@ section[data-slide="money-multiplier"] .columns .card p {
     At end of each day, all public deposit accounts are swept to zero, with net balances consolidated
     into the National Loans Fund. Spending and revenue are only reconciled at day's end.
   </div>
-
-  <p class="footnote">
-    Full accounting in Table 2, Appendix. See also Commissioners for Revenue and Customs Act 2005, Section 44.
-  </p>
 
   <aside class="notes">
     Taxation is the reverse process. When someone pays tax, their deposit decreases, their bank's
@@ -1922,18 +2213,30 @@ section[data-slide="money-multiplier"] .columns .card p {
         />
       </noscript>
     </div>
-
     <aside class="notes">
       This chart shows UK sectoral balances over time. Notice how when the government deficit increases,
       the private sector surplus tends to increase as well. The three balances always sum to zero.
     </aside>
   </section>
+
         <section class="chart-slide">
           <h2 class="slide-title">Sectoral Balances: Japan</h2>
           <p class="chart-subtitle">Large government deficits matched by large private surpluses</p>
-          <div style="height: 640px; margin: 0;">
-            <div class="flourish-embed flourish-chart" data-src="visualisation/26138148"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26138148/thumbnail" width="100%" alt="Japan Sectoral Balances chart" /></noscript></div>
-          </div>
+           <!-- Flourish embed with explicit height -->
+    <div
+      class="flourish-embed flourish-chart sectoral-flourish"
+      data-src="visualisation/26138148"
+      data-height="480px"
+    >
+      <script src="https://public.flourish.studio/resources/embed.js"></script>
+      <noscript>
+        <img
+          src="https://public.flourish.studio/visualisation/26138148/thumbnail"
+          width="100%"
+          alt="UK Sectoral Balances chart"
+        />
+      </noscript>
+    </div>
           <aside class="notes">
             Japan has run large government deficits for decades, which have been matched by large private sector surpluses. This explains how Japan maintains low interest rates despite high debt-to-GDP ratios.
           </aside>
@@ -1941,9 +2244,21 @@ section[data-slide="money-multiplier"] .columns .card p {
         <section class="chart-slide">
           <h2 class="slide-title">Sectoral Balances: United States</h2>
           <p class="chart-subtitle">Government deficits fund both private surpluses and current account deficits</p>
-          <div style="height: 640px; margin: 0;">
-            <div class="flourish-embed flourish-chart" data-src="visualisation/26138148"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26138148/thumbnail" width="100%" alt="US Sectoral Balances chart" /></noscript></div>
-          </div>
+           <!-- Flourish embed with explicit height -->
+    <div
+      class="flourish-embed flourish-chart sectoral-flourish"
+      data-src="visualisation/26138148"
+      data-height="480px"
+    >
+      <script src="https://public.flourish.studio/resources/embed.js"></script>
+      <noscript>
+        <img
+          src="https://public.flourish.studio/visualisation/26138148/thumbnail"
+          width="100%"
+          alt="UK Sectoral Balances chart"
+        />
+      </noscript>
+    </div>
           <aside class="notes">
             The US typically runs both government and current account deficits, meaning the private domestic sector can still accumulate net financial assets despite the trade deficit.
           </aside>
@@ -1951,9 +2266,21 @@ section[data-slide="money-multiplier"] .columns .card p {
         <section class="chart-slide">
           <h2 class="slide-title">Sectoral Balances: Germany</h2>
           <p class="chart-subtitle">Export surpluses allow government surplus without private sector deficit</p>
-          <div style="height: 640px; margin: 0;">
-            <div class="flourish-embed flourish-chart" data-src="visualisation/26138148"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26138148/thumbnail" width="100%" alt="Germany Sectoral Balances chart" /></noscript></div>
-          </div>
+          <!-- Flourish embed with explicit height -->
+    <div
+      class="flourish-embed flourish-chart sectoral-flourish"
+      data-src="visualisation/26138148"
+      data-height="480px"
+    >
+      <script src="https://public.flourish.studio/resources/embed.js"></script>
+      <noscript>
+        <img
+          src="https://public.flourish.studio/visualisation/26138148/thumbnail"
+          width="100%"
+          alt="UK Sectoral Balances chart"
+        />
+      </noscript>
+    </div>
           <aside class="notes">
             Germany's large trade surplus means the government can run balanced budgets or surpluses while the private sector still saves. This is only possible because other countries run deficits.
           </aside>
@@ -1961,9 +2288,21 @@ section[data-slide="money-multiplier"] .columns .card p {
         <section class="chart-slide">
           <h2 class="slide-title">Sectoral Balances: France</h2>
           <p class="chart-subtitle">Constrained by Eurozone fiscal rules</p>
-          <div style="height: 640px; margin: 0;">
-            <div class="flourish-embed flourish-chart" data-src="visualisation/26138148"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26138148/thumbnail" width="100%" alt="France Sectoral Balances chart" /></noscript></div>
-          </div>
+          <!-- Flourish embed with explicit height -->
+    <div
+      class="flourish-embed flourish-chart sectoral-flourish"
+      data-src="visualisation/26138148"
+      data-height="480px"
+    >
+      <script src="https://public.flourish.studio/resources/embed.js"></script>
+      <noscript>
+        <img
+          src="https://public.flourish.studio/visualisation/26138148/thumbnail"
+          width="100%"
+          alt="UK Sectoral Balances chart"
+        />
+      </noscript>
+    </div>
           <aside class="notes">
             France, as a Eurozone member, faces constraints that currency-issuing nations don't. The sectoral balances still hold, but policy options are more limited.
           </aside>
@@ -1971,9 +2310,21 @@ section[data-slide="money-multiplier"] .columns .card p {
         <section class="chart-slide">
           <h2 class="slide-title">Sectoral Balances: Australia</h2>
           <p class="chart-subtitle">Resource exports influence the balance</p>
-          <div style="height: 640px; margin: 0;">
-            <div class="flourish-embed flourish-chart" data-src="visualisation/26138148"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26138148/thumbnail" width="100%" alt="Australia Sectoral Balances chart" /></noscript></div>
-          </div>
+           <!-- Flourish embed with explicit height -->
+    <div
+      class="flourish-embed flourish-chart sectoral-flourish"
+      data-src="visualisation/26138148"
+      data-height="480px"
+    >
+      <script src="https://public.flourish.studio/resources/embed.js"></script>
+      <noscript>
+        <img
+          src="https://public.flourish.studio/visualisation/26138148/thumbnail"
+          width="100%"
+          alt="UK Sectoral Balances chart"
+        />
+      </noscript>
+    </div>
           <aside class="notes">
             Australia's commodity exports significantly influence its sectoral balances, with the foreign sector position varying with global commodity demand.
           </aside>
@@ -1981,9 +2332,21 @@ section[data-slide="money-multiplier"] .columns .card p {
         <section class="chart-slide">
           <h2 class="slide-title">Sectoral Balances: Canada</h2>
           <p class="chart-subtitle">Close integration with US economy</p>
-          <div style="height: 640px; margin: 0;">
-            <div class="flourish-embed flourish-chart" data-src="visualisation/26744215"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26138148/thumbnail" width="100%" alt="Canada Sectoral Balances chart" /></noscript></div>
-          </div>
+           <!-- Flourish embed with explicit height -->
+    <div
+      class="flourish-embed flourish-chart sectoral-flourish"
+      data-src="visualisation/26138148"
+      data-height="480px"
+    >
+      <script src="https://public.flourish.studio/resources/embed.js"></script>
+      <noscript>
+        <img
+          src="https://public.flourish.studio/visualisation/26138148/thumbnail"
+          width="100%"
+          alt="UK Sectoral Balances chart"
+        />
+      </noscript>
+    </div>
           <aside class="notes">
             Canada's sectoral balances are heavily influenced by its trade relationship with the United States and its resource sector.
           </aside>
@@ -1991,26 +2354,27 @@ section[data-slide="money-multiplier"] .columns .card p {
       </section>
 
       <!-- SLIDE 25: Sectoral Balances Implications -->
-      <section>
+      <section class="sectoral-implications-slide">
+
         <h2>What Sectoral Balances Tell Us</h2>
         <div class="columns">
           <div class="column">
-            <div class="card card-red" style="margin-bottom: 16px;">
+            <div class="card card-red border-red" style="margin-bottom: 16px;">
               <p class="small" style="color: var(--red); font-weight: 600;">The "Balanced Budget" Problem</p>
               <p class="smaller muted">If the government balances its budget and the country runs a trade deficit, the private sector <em>must</em> go into deficit (spend more than income).</p>
               <p class="smaller" style="margin-top: 12px;"><strong>This is unsustainable</strong> — private debt accumulates until a crisis forces correction.</p>
             </div>
-            <div class="card">
+            <div class="card border-navy">
               <p class="small" style="color: var(--navy); font-weight: 600;">Historical Pattern</p>
               <p class="smaller muted">Every major financial crisis has been preceded by a period where government surpluses forced the private sector into deficit.</p>
             </div>
           </div>
           <div class="column">
-            <div class="card card-green" style="margin-bottom: 16px;">
+            <div class="card card-green border-green" style="margin-bottom: 16px;">
               <p class="small" style="color: var(--green); font-weight: 600;">Government Deficits Enable Private Saving</p>
               <p class="smaller muted">For the private sector to net save (accumulate financial assets), the government must run a deficit of equal size (adjusted for trade).</p>
             </div>
-            <div class="card card-gold">
+            <div class="card card-gold border-gold">
               <p class="small" style="font-weight: 600;">Policy Implication</p>
               <p class="smaller">Arbitrary deficit targets ignore sectoral balance realities. The "appropriate" deficit depends on private sector saving desires and the trade balance — not a fixed percentage of GDP.</p>
             </div>
@@ -2036,116 +2400,131 @@ section[data-slide="money-multiplier"] .columns .card p {
         </aside>
       </section>
 
-      <!-- SLIDE 27: What Findings Mean -->
-      <section>
-        <h2>What These Findings Mean</h2>
-        <div class="card card-red" style="margin-bottom: 16px;">
-          <p class="small" style="color: var(--red); font-weight: 600;">Constraints That Are NOT Valid</p>
-          <div class="columns" style="margin-top: 12px; gap: 16px;">
-            <div class="column">
-              <p class="smaller"><strong>Liquidity Risk</strong></p>
-              <p class="smaller muted">No circumstance where government has "insufficient money" for expenditure requirements</p>
-            </div>
-            <div class="column">
-              <p class="smaller"><strong>Market Risk / Bond Vigilantes</strong></p>
-              <p class="smaller muted">Banks purchase securities to exchange excess reserves for higher-yielding assets. DMO faces a "seller's market"</p>
-            </div>
-            <div class="column">
-              <p class="smaller"><strong>Default Risk</strong></p>
-              <p class="smaller muted">Debt payments are Standing Services — permanently authorized by Parliament. Default requires explicit repeal</p>
-            </div>
-          </div>
-        </div>
-        <div class="card card-green" style="margin-bottom: 16px;">
-          <p class="small" style="color: var(--green); font-weight: 600;">The REAL Constraints</p>
-          <div class="columns" style="margin-top: 12px; gap: 16px;">
-            <div class="column">
-              <p class="smaller"><strong>Inflation</strong></p>
-              <p class="smaller muted">Spending where resources are scarce can create inflationary pressure</p>
-            </div>
-            <div class="column">
-              <p class="smaller"><strong>Resource Availability</strong></p>
-              <p class="smaller muted">Physical resources, labour, materials are the true limits — not accounting entries</p>
-            </div>
-            <div class="column">
-              <p class="smaller"><strong>Political/Democratic Choice</strong></p>
-              <p class="smaller muted">Parliament decides priorities. Fiscal rules are policy choices, not operational necessities</p>
-            </div>
-          </div>
-        </div>
-        <div class="highlight-box">
-          <strong style="color: var(--gold);">The core insight:</strong> The question is not "can we afford it?" but rather "do we have the real resources?" and "what are the inflationary implications?"
-        </div>
-        <div class="quote" style="margin-top: 16px;">
-          <p class="smaller">"The Government's banking arrangements... ensure that all expenditure authorized by Parliament can be settled."</p>
-          <p class="source">— HM Treasury, FOI response 2020</p>
-        </div>
-        <aside class="notes">
-          What isn't a valid constraint: liquidity risk, market risk from "bond vigilantes", or default risk — debt payments are permanently authorized. The real constraints are inflation risk when spending exceeds available resources, physical resource availability, and political choices. The question isn't "can we afford it?" but "do we have the resources?" and "what are the inflation implications?"
-        </aside>
-      </section>
+     <!-- SLIDE 27: What Findings Mean -->
+<section class="findings-slide">
+  <h2>What These Findings Mean</h2>
 
-      <!-- SLIDE 24: Central Bank Independence -->
-      <section>
-        <h2>Central Bank "Independence"</h2>
-        <div class="card card-gold" style="margin-bottom: 20px;">
-          <p>The Bank of England is <strong>never independent</strong> in the sense that it can refuse to facilitate public expenditure.</p>
-        </div>
-        <div class="columns">
-          <div class="column card">
-            <div style="width: 40px; height: 40px; background: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; margin-bottom: 12px;">1</div>
-            <p style="color: var(--navy); font-weight: 600;">Legal Obligation</p>
-            <p class="smaller muted">Under the 1866 Act, the BoE has no discretion over whether to extend credit to the Consolidated Fund. This was not changed by the Bank of England Act 1998.</p>
-          </div>
-          <div class="column card">
-            <div style="width: 40px; height: 40px; background: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; margin-bottom: 12px;">2</div>
-            <p style="color: var(--navy); font-weight: 600;">System Dependence</p>
-            <p class="smaller muted">The BoE's assets are almost entirely government securities or loans collateralized by them. HM Treasury provides capital, indemnities, and deposit insurance backing.</p>
-          </div>
-        </div>
-        <div class="columns" style="margin-top: 16px;">
-          <div class="column card card-green">
-            <p class="small" style="color: var(--green); font-weight: 600;">What "Independence" Actually Means</p>
-            <p class="smaller muted">Operational independence for <em>monetary policy</em> (setting interest rates) — not independence from facilitating Parliamentary-authorized spending.</p>
-          </div>
-          <div class="column card">
-            <p class="small" style="color: var(--navy); font-weight: 600;">The Hierarchy</p>
-            <p class="smaller muted">Parliament's power to tax provides supreme creditworthiness. The BoE is a wholly owned subsidiary of HM Treasury, subject to its direction.</p>
-          </div>
-        </div>
-        <div class="highlight-box">
-          <strong style="color: var(--gold);">Conclusion:</strong> Consolidating the Treasury and central bank balance sheets for analytical purposes reflects institutional reality in the UK. The government self-finances; the BoE executes.
-        </div>
-        <p class="footnote">See Financial Services and Markets Act 2000; Banking Act 2009 for Treasury backstop powers</p>
-        <aside class="notes">
-          Central bank "independence" doesn't mean the BoE can refuse to execute Parliamentary spending. Under the 1866 Act, it has no discretion. The BoE's assets are almost entirely government securities, and Treasury provides its capital and indemnities. Independence means setting interest rates, not blocking spending. The government self-finances; the BoE executes.
-        </aside>
-      </section>
+  <div class="card card-red" style="margin-bottom: 12px;">
+    <p class="small" style="color: var(--red); font-weight: 600;">Constraints That Are NOT Valid</p>
+    <div class="columns">
+      <div class="column">
+        <p class="smaller"><strong>Liquidity Risk</strong></p>
+        <p class="smaller muted">No circumstance where government has "insufficient money" for expenditure requirements</p>
+      </div>
+      <div class="column">
+        <p class="smaller"><strong>Market Risk / Bond Vigilantes</strong></p>
+        <p class="smaller muted">Banks purchase securities to exchange excess reserves for higher-yielding assets. DMO faces a "seller's market"</p>
+      </div>
+      <div class="column">
+        <p class="smaller"><strong>Default Risk</strong></p>
+        <p class="smaller muted">Debt payments are Standing Services — permanently authorized by Parliament. Default requires explicit repeal</p>
+      </div>
+    </div>
+  </div>
 
-      <!-- SLIDE 25: Summary -->
+  <div class="card card-green" style="margin-bottom: 12px;">
+    <p class="small" style="color: var(--green); font-weight: 600;">The REAL Constraints</p>
+    <div class="columns">
+      <div class="column">
+        <p class="smaller"><strong>Inflation</strong></p>
+        <p class="smaller muted">Spending where resources are scarce can create inflationary pressure</p>
+      </div>
+      <div class="column">
+        <p class="smaller"><strong>Resource Availability</strong></p>
+        <p class="smaller muted">Physical resources, labour, materials are the true limits — not accounting entries</p>
+      </div>
+      <div class="column">
+        <p class="smaller"><strong>Political/Democratic Choice</strong></p>
+        <p class="smaller muted">Parliament decides priorities. Fiscal rules are policy choices, not operational necessities</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-box key-insight">
+    <strong style="color: var(--gold);">The core insight:</strong>
+    The question is not "can we afford it?" but rather "do we have the real resources?"
+    and "what are the inflationary implications?"
+  </div>
+
+  <div class="quote compact-quote">
+    <p class="smaller">"The Government's banking arrangements... ensure that all expenditure authorized by Parliament can be settled."</p>
+    <p class="source">— HM Treasury, FOI response 2020</p>
+  </div>
+
+  <aside class="notes">
+    What isn't a valid constraint: liquidity risk, market risk from "bond vigilantes", or default risk…
+  </aside>
+</section>
+
+     <!-- SLIDE 28: Central Bank Independence -->
+<section class="independence-slide">
+  <h2>Central Bank "Independence"</h2>
+
+  <div class="card card-gold" style="margin-bottom: 14px;">
+    <p>The Bank of England is <strong>never independent</strong> in the sense that it can refuse to facilitate public expenditure.</p>
+  </div>
+
+  <div class="columns">
+    <div class="column card">
+      <div style="width: 40px; height: 40px; background: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; margin-bottom: 8px;">1</div>
+      <p style="color: var(--navy); font-weight: 600;">Legal Obligation</p>
+      <p class="smaller muted">Under the 1866 Act, the BoE has no discretion over whether to extend credit to the Consolidated Fund. This was not changed by the Bank of England Act 1998.</p>
+    </div>
+
+    <div class="column card">
+      <div style="width: 40px; height: 40px; background: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; margin-bottom: 8px;">2</div>
+      <p style="color: var(--navy); font-weight: 600;">System Dependence</p>
+      <p class="smaller muted">The BoE's assets are almost entirely government securities or loans collateralized by them. HM Treasury provides capital, indemnities, and deposit insurance backing.</p>
+    </div>
+  </div>
+
+  <div class="columns" style="margin-top: 10px;">
+    <div class="column card card-green">
+      <p class="small" style="color: var(--green); font-weight: 600;">What "Independence" Actually Means</p>
+      <p class="smaller muted">Operational independence for <em>monetary policy</em> (setting interest rates) — not independence from facilitating Parliamentary-authorized spending.</p>
+    </div>
+    <div class="column card border-navy">
+      <p class="small" style="color: var(--navy); font-weight: 600;">The Hierarchy</p>
+      <p class="smaller muted">Parliament's power to tax provides supreme creditworthiness. The BoE is a wholly owned subsidiary of HM Treasury, subject to its direction.</p>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <strong style="color: var(--gold);">Conclusion:</strong>
+    Consolidating the Treasury and central bank balance sheets for analytical purposes reflects institutional reality in the UK. The government self-finances; the BoE executes.
+  </div>
+
+  <p class="footnote">See Financial Services and Markets Act 2000; Banking Act 2009 for Treasury backstop powers</p>
+
+  <aside class="notes">
+    Central bank "independence" doesn't mean the BoE can refuse to execute Parliamentary spending…
+  </aside>
+</section>
+
+      <!-- SLIDE 29: Summary -->
       <section>
         <h2>Summary: Key Takeaways</h2>
         <div class="takeaway">
           <div class="takeaway-number">1</div>
-          <div class="takeaway-content">
-            <strong>Commercial banks create 97% of money</strong> through lending — not by lending out deposits.
+          <div class="takeaway-content border-navy">
+            <strong>Commercial banks create money through lending</strong> — not by lending out deposits.
           </div>
         </div>
         <div class="takeaway">
           <div class="takeaway-number">2</div>
-          <div class="takeaway-content">
+          <div class="takeaway-content border-navy">
             <strong>Government spending is money creation.</strong> The Consolidated Fund provides sovereign credit backed by Parliament's taxing power.
           </div>
         </div>
         <div class="takeaway">
           <div class="takeaway-number">3</div>
-          <div class="takeaway-content">
+          <div class="takeaway-content border-navy">
             <strong>Taxation destroys money</strong> rather than funding expenditure. Taxes are settled after spending occurs.
           </div>
         </div>
         <div class="takeaway">
           <div class="takeaway-number">4</div>
-          <div class="takeaway-content">
+          <div class="takeaway-content border-navy">
             <strong>Debt issuance is a policy choice</strong>, not an operational necessity. Today, it mainly provides safe assets and collateral.
           </div>
         </div>
@@ -2160,31 +2539,58 @@ section[data-slide="money-multiplier"] .columns .card p {
         </aside>
       </section>
 
-      <!-- SLIDE 26: Questions -->
-      <section>
-        <h2>Questions for Discussion</h2>
-        <div class="car card-gold" style="margin-bottom: 16px;">
-          <p>If government spending creates money and taxation destroys it, how should we think about "balancing the budget"?</p>
-        </div>
-        <div class="card" style="margin-bottom: 16px;">
-          <p>What are the implications for fiscal rules and debt-to-GDP targets?</p>
-        </div>
-        <div class="card" style="margin-bottom: 16px;">
-          <p>How should we assess whether we can "afford" public investments — e.g., in infrastructure, healthcare, or climate transition?</p>
-        </div>
-        <div class="card" style="margin-bottom: 16px;">
-          <p>Should the "full funding rule" be reviewed given the current monetary policy framework?</p>
-        </div>
-        <div class="card card-gold">
-          <p>How might improved public understanding of these mechanisms change the policy debate?</p>
-        </div>
-        <aside class="notes">
-          Some questions for discussion: How should we think about "balancing the budget" if spending creates money and taxation destroys it? What about fiscal rules? How do we assess affordability of public investments? Should the full funding rule be reviewed? And how might better public understanding change the debate?
-        </aside>
-      </section>
+   <section>
+  <h2>Questions for Discussion</h2>
+
+  <div class="discussion-item">
+    <div class="discussion-number">1</div>
+    <div class="discussion-content border-navy">
+      If government spending creates money and taxation destroys it,
+      how should we think about "balancing the budget"?
+    </div>
+  </div>
+
+  <div class="discussion-item">
+    <div class="discussion-number">2</div>
+    <div class="discussion-content border-navy">
+      What are the implications for fiscal rules and debt-to-GDP targets?
+    </div>
+  </div>
+
+  <div class="discussion-item">
+    <div class="discussion-number">3</div>
+    <div class="discussion-content border-navy">
+      How should we assess whether we can "afford" public investments —
+      e.g., in infrastructure, healthcare, or climate transition?
+    </div>
+  </div>
+
+  <div class="discussion-item">
+    <div class="discussion-number">4</div>
+    <div class="discussion-content border-navy">
+      Should the "full funding rule" be reviewed given the current
+      monetary policy framework?
+    </div>
+  </div>
+
+  <div class="discussion-item">
+    <div class="discussion-number">5</div>
+    <div class="discussion-content border-navy">
+      How might improved public understanding of these mechanisms
+      change the policy debate?
+    </div>
+  </div>
+
+  <aside class="notes">
+    These questions support discussion of fiscal rules, balancing the budget,
+    public investment, the full funding rule, and how public understanding
+    shapes the policy debate.
+  </aside>
+</section>
+
 
       <!-- SLIDE 27: References -->
-      <section>
+      <section class="references-slide">
         <h2>References and Further Reading</h2>
         <div class="columns">
           <div class="column">
@@ -2205,6 +2611,8 @@ section[data-slide="money-multiplier"] .columns .card p {
           </div>
           <div class="column">
             <p class="smaller" style="color: var(--gold); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Further Reading</p>
+            <p class="smaller muted"><strong>Godley, W. (1999)</strong> "Seven Unsustainable Processes" <em>Strategic Analysis, Levy Economics Institute</em></p>
+            <p class="smaller muted"><strong>Godley, W. & Lavoie, M. (2007)</strong> <em>Monetary Economics: An Integrated Approach to Credit, Money, Income, Production and Wealth</em>, Palgrave Macmillan</p>
             <p class="smaller muted" style="margin-top: 12px;"><strong>Bell, S. (2000)</strong> "Do Taxes and Bonds Finance Government Spending?" <em>Journal of Economic Issues</em></p>
             <p class="smaller muted"><strong>Tymoigne, E. (2014)</strong> "Modern Money Theory, and Interrelations Between the Treasury and Central Bank" <em>Journal of Economic Issues</em></p>
             <p class="smaller muted"><strong>Fullwiler, S. (2020)</strong> "When the Interest Rate on the National Debt Is a Policy Variable" <em>Public Budgeting & Finance</em></p>
@@ -2215,7 +2623,6 @@ section[data-slide="money-multiplier"] .columns .card p {
             <p class="smaller muted">• Bank of England Sterling Monetary Framework</p>
           </div>
         </div>
-        <p class="footnote">Freedom of Information requests and correspondence available from authors</p>
         <aside class="notes">
           Here are the key references. The Bank of England's 2014 paper on money creation is essential reading. The Berkeley et al. 2025 paper provides the detailed institutional analysis of UK government operations. Key legislation includes the 1866 Act, Finance Act 1954, and National Loans Act 1968.
         </aside>
