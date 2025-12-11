@@ -17,7 +17,7 @@
     :root {
       --r-background-color: #ffffff;
       --r-main-font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --r-main-font-size: 32px;
+      --r-main-font-size: 28px;
       --r-main-color: #1d1d1d;
       --r-heading-font: 'Crimson Pro', Georgia, serif;
       --r-heading-color: #1a365d;
@@ -55,14 +55,11 @@
 
     .reveal .slides section {
       text-align: left;
-      padding: 20px 80px 40px 80px;
+      padding: 0px 80px 50px 80px;
       overflow-x: hidden;
       overflow-y: visible;
     }
 
-    .reveal .slides section.present {
-      top: 0 !important;
-    }
 
     /* Title slide styling */
     .reveal .title-slide {
@@ -153,7 +150,7 @@
     .columns {
       display: flex;
       gap: 40px;
-      align-items: flex-start;
+      align-items:stretch !important;
     }
 
     .column {
@@ -175,8 +172,8 @@
     .card {
       background: var(--muted);
       border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 16px;
+      padding: 10px 14px;
+      margin-bottom: 12px;
     }
 
     .card-navy {
@@ -200,6 +197,18 @@
       background: #fef2f2;
       border: 2px solid #fecaca;
     }
+
+        .card-gray {
+  border: 2px solid #d1d5db;     /* soft gray outline (Tailwind gray-300 equivalent) */
+  background: #f9fafb;           /* optional: light gray background */         /* matches Reveal card rounding */
+  }
+
+  .key-insight {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.8em;
+  line-height: 1.35;
+}
 
     /* Balance sheet tables */
     .balance-sheet {
@@ -302,52 +311,61 @@
       border: 2px solid var(--green);
     }
 
-    /* Pyramid */
+   /* Pyramid */
     .pyramid {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 15px;
     }
 
     .pyramid-level {
-      padding: 16px 24px;
+      padding: 10px 20px;
       text-align: center;
       border-radius: 8px;
       color: white;
     }
 
+    .pyramid-level p {
+      margin: 0;
+      line-height: 1.3;
+    }
+
     .pyramid-level.gold {
       background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-      width: 300px;
+      width: 280px;
     }
 
     .pyramid-level.navy {
       background: var(--navy);
-      width: 480px;
+      width: 440px;
     }
 
     .pyramid-level.grey {
       background: var(--muted-text);
-      width: 660px;
+      width: 600px;
     }
 
     .pyramid-level.light {
       background: var(--muted);
       color: var(--navy);
       border: 1px solid #e5e5e5;
-      width: 840px;
+      width: 760px;
+    }
+
+    .pyramid-level .smaller {
+      font-size: 0.65em;
     }
 
     .pyramid-level .title {
       font-weight: 600;
-      font-size: 1.1em;
+      font-size: 1em;
     }
 
     .pyramid-level .subtitle {
-      font-size: 0.75em;
+      font-size: 0.65em;
       opacity: 0.8;
-      margin-top: 4px;
+      margin-top: 2px;
     }
 
     /* Flow diagram */
@@ -440,13 +458,17 @@
 
     /* Footnote */
     .footnote {
-      position: absolute;
-      bottom: 12px;
-      left: 80px;
-      right: 80px;
-      font-size: 0.55em;
-      color: var(--muted-text);
-    }
+    position: absolute;
+    margin-top: 10px;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 160px);  /* respects your slide side padding */
+    text-align: center;
+    font-size: 0.55em;
+    color: var(--muted-text);
+  }
+
 
     /* Agenda item */
     .agenda-item {
@@ -562,17 +584,468 @@
     .smaller { font-size: 0.75em; }
     .muted { color: var(--muted-text); }
 
+    /* Flourish embed container */
+    .flourish-embed {
+      width: 100%;
+      height: 100%;
+    }
+    .flourish-embed iframe {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    /* Chart slides with minimal padding */
+    .reveal .slides section.chart-slide {
+      padding: 5px 40px 5px 40px;
+      top: 0 !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .chart-slide h2 {
+      font-size: 1.3em;
+      margin: 0 0 2px 0;
+    }
+    .chart-slide .chart-subtitle {
+      font-size: 0.65em;
+      color: var(--muted-text);
+      margin: 0 0 2px 0;
+      text-align: center;
+    }
+
     /* Speaker notes styling */
     .reveal .speaker-notes {
       font-family: var(--r-main-font);
       font-size: 18px;
       line-height: 1.5;
     }
+
+    /* Compact slide layout for dense content */
+  .reveal .slides section.compact-slide {
+    padding: 0 60px 50px;        /* slightly smaller side + bottom padding */
+  }
+
+  /* Tighten heading + subtitle spacing */
+  .compact-slide h2 {
+    margin-bottom: 0.25em;
+  }
+  .compact-slide > p.muted {
+    margin: 0 0 10px 0;
+  }
+
+  /* Columns: less gap + less top margin */
+  .compact-slide .columns {
+    margin-top: 8px !important;
+    gap: 24px;
+  }
+
+  /* Cards on the left – less padding & vertical gaps */
+  .compact-slide .card {
+    padding: 8px 9px;
+    margin-bottom: 10px;
+  }
+
+  .compact-slide .card p {
+    margin: 4px 0;
+  }
+
+  /* Tighten the white "What it does" box */
+  .compact-slide .column-wide > div[style*="border: 1px"] {
+  padding: 10px 12px !important;
+  margin-top: 8px !important;
+}
+
+  .compact-slide .card-gold {
+    padding: 12px 16px;
+  }
+
+  /* White “What it does” box – tighter */
+  .compact-slide .column-wide > div[style*="padding: 16px"] {
+    padding: 10px 14px !important;
+    margin-top: 10px !important;
+  }
+
+  /* Right column “central funds” boxes – tighter */
+  .compact-slide .column-narrow > div[style*="padding"] {
+    padding: 12px 14px !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* Slightly tighter body line-height on this slide only */
+  .compact-slide p,
+  .compact-slide li {
+    line-height: 1.5;
+  }
+
+  /* Footnote a bit closer to the bottom, slightly smaller */
+  .compact-slide .footnote {
+    font-size: 0.5em;
+  }
+/* Tighten text spacing inside right-column boxes */
+.compact-slide .column-narrow p {
+  margin: 8px 0 !important;
+  line-height: 1.25;
+}
+
+/* -----------------------------------------------------------
+   SLIDE 10 — Money Multiplier: compact spacing adjustments
+----------------------------------------------------------- */
+section[data-slide="money-multiplier"] .card-red {
+  padding: 10px 12px !important;   /* reduce pink card padding */
+}
+
+/* Reduce padding inside the white flow boxes */
+section[data-slide="money-multiplier"] .flow-box {
+  padding: 8px 10px !important;    /* down from ~16px default */
+}
+
+section[data-slide="money-multiplier"] .flow-box p {
+  margin: 2px 0 !important;
+  line-height: 1.35;
+}
+
+/* Reduce padding of the BOE quote box */
+section[data-slide="money-multiplier"] .quote {
+  padding: 10px 12px !important;
+}
+
+/* Bottom gray boxes */
+section[data-slide="money-multiplier"] .columns .card {
+  padding: 10px 14px !important;   /* much tighter but still readable */
+}
+
+section[data-slide="money-multiplier"] .columns .card p {
+  margin: 4px 0 !important;
+  line-height: 1.35;
+}
+
+/* ------------------------------------------ */
+/* COMPACT SLIDE 16 — Parliament Authorizes   */
+/* ------------------------------------------ */
+
+.compact-parliament {
+  padding: 0 60px 44px !important;   /* small bottom pad for footnote */
+}
+
+/* Tighten heading spacing */
+.compact-parliament h2 {
+  margin-bottom: 0.4em;
+}
+
+/* Quote block tighter padding */
+.compact-parliament .quote {
+  padding: 10px 14px !important;
+  margin-bottom: 16px !important;
+}
+
+/* Columns closer together */
+.compact-parliament .columns {
+  margin-top: 12px !important;
+  gap: 20px !important;
+  align-items: stretch;
+}
+
+/* Cards thinner: equal heights w/ consistent padding */
+.compact-parliament .columns .column {
+  padding: 10px 14px !important;   /* was 20px */
+  border-radius: 10px !important;
+  display: flex;
+  flex-direction: column;
+}
+
+.compact-parliament .columns .column p {
+  margin: 6px 0 !important;
+  line-height: 1.35 !important;
+}
+
+.compact-parliament .columns .column div:first-child {
+  margin-bottom: 10px !important;
+}
+
+/* Gold key-point card tighter */
+.compact-parliament .card-gold {
+  padding: 12px 16px !important;
+  margin-top: 16px !important;
+}
+
+/* Footnote spacing (absolute element fix) */
+.compact-parliament .footnote {
+  font-size: 0.55em;
+  bottom: 12px;                      /* consistent with other slides */
+}
+
+/* Create space *above* the footnote by increasing bottom padding */
+.compact-parliament {
+  padding-bottom: 52px !important;
+}
+
+
+/* ------------------------------
+   Compact Steps Slide 17 Formatting
+   ------------------------------ */
+.compact-steps {
+  font-size: 0.95em;              /* slightly smaller text for the entire slide */
+  line-height: 1.35;
+}
+
+/* Step rows: reduce vertical spacing */
+.compact-steps .step {
+  margin: 8px 0 !important;       /* down from ~20px spacing */
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* Number circles */
+.compact-steps .step-number {
+  width: 36px;
+  height: 36px;
+  font-size: 0.95em;
+}
+
+/* Step content box (default grey boxes) */
+.compact-steps .step-content {
+  background: #f7f7f7;
+  border: 1px solid #d0d0d0;      /* NEW: light grey border */
+  padding: 10px 14px;             /* slightly tighter padding */
+  border-radius: 8px;
+}
+
+/* Highlight (gold) */
+.compact-steps .step-content.highlight {
+  background: #fef7dc;
+  border: 1px solid var(--gold);
+}
+
+/* Success (green) */
+.compact-steps .step-content.success {
+  background: #ecfdf5;
+  border: 1px solid #34d399;
+}
+
+/* Critical insight box */
+.compact-steps .highlight-box {
+  background: #062f4f;
+  padding: 12px 14px;
+  border-radius: 8px;
+  margin-top: 14px;
+  font-size: 0.92em;              /* slightly smaller */
+  line-height: 1.35;
+}
+
+/* Footnote */
+.compact-steps .footnote {
+  margin-top: 8px;
+  font-size: 0.55em;
+}
+
+/* Slide 18 – compact layout */
+.reveal .slides section.growing-slide {
+  font-size: 0.9em;          /* shrink body text a bit */
+}
+
+/* Gold banner at the top */
+.growing-slide .gold-banner {
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+  padding: 16px 20px;        /* was 28px */
+  border-radius: 12px;
+  color: white;
+  margin-bottom: 14px;       /* was 20px */
+}
+
+/* Columns area */
+.growing-slide .columns {
+  margin-top: 8px;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* Cards on this slide – tighter padding */
+.growing-slide .card {
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+
+/* Right-hand green/red cards a bit smaller */
+.growing-slide .card-green,
+.growing-slide .card-red {
+  font-size: 0.9em;
+}
+
+/* Conclusion box – tighter + smaller text */
+.growing-slide .highlight-box {
+  margin-top: 14px;
+  padding: 14px 16px;        /* down from 24px */
+  font-size: 0.9em;
+}
+
+/* Slide 20 – compact taxation layout */
+.reveal .slides section.taxation-slide {
+  font-size: 0.9em;                 /* shrink body text a bit */
+}
+
+/* Quote strip */
+.taxation-slide .quote {
+  padding: 10px 16px;               /* less padding than default */
+  margin-bottom: 12px;              /* tighter gap under quote */
+}
+
+/* Flow row */
+.taxation-slide .flow {
+  margin: 6px 0 14px;               /* less vertical space */
+  gap: 10px;
+}
+
+.taxation-slide .flow-box {
+  padding: 10px 12px;               /* was 16px */
+}
+
+.taxation-slide .flow-box .amount {
+  font-size: 1em;                   /* slightly smaller numbers */
+}
+
+/* Two cards */
+.taxation-slide .columns {
+  margin-top: 6px;
+  gap: 16px;
+}
+
+.taxation-slide .card {
+  padding: 10px 14px;               /* down from 24px */
+}
+
+/* Highlight strip at the bottom */
+.taxation-slide .highlight-box {
+  margin-top: 12px;
+  padding: 12px 14px;
+  font-size: 0.9em;
+}
+
+/* Slide 20: make the green card use ONLY a thick left border */
+.taxation-slide .card-green {
+  background: #f0fdf4 !important;
+  border-width: 0 !important;               /* kill all sides */
+  border-left-width: 4px !important;        /* restore left border */
+  border-left-style: solid !important;
+  border-left-color: var(--green) !important;
+  border-radius: 12px !important;
+  padding: 14px 16px !important;
+}
+
+/* Slide 21 – Debt Issuance compact layout */
+.reveal .slides section.debt-slide {
+  padding: 0 60px 30px;
+  font-size: 0.9em;                /* overall shrink */
+}
+
+/* Title a little tighter */
+.debt-slide h2 {
+  margin-bottom: 0.35em;
+}
+
+/* Top red card */
+.debt-slide .debt-rule {
+  padding: 10px 14px;              /* less padding */
+  margin-bottom: 12px;
+}
+
+.debt-slide .debt-rule p {
+  margin: 4px 0;
+}
+
+.debt-slide .debt-rule .badge {
+  font-size: 0.55em;
+  padding: 3px 8px;
+  top: 8px;
+  right: 10px;
+}
+
+/* Middle two cards */
+.debt-slide .columns {
+  margin-top: 8px;
+  gap: 18px;
+}
+
+.debt-slide .columns .card {
+  padding: 10px 14px;              /* was ~24px */
+  height: 100%;                    /* equal height columns */
+}
+
+.debt-slide .columns .card p {
+  margin: 4px 0;
+}
+
+/* Bottom strips already using .key-insight – just tighten a bit more */
+.debt-slide .key-insight {
+  margin-top: 10px !important;
+  font-size: 0.85em;
+}
+
+.debt-slide .key-insight:last-of-type {
+  margin-bottom: 30px;
+}
+
+/* Slide 23 — reduce font + spacing so everything fits */
+.sectoral-slide {
+  font-size: 0.90em;              /* global shrink: ~10% smaller */
+}
+
+/* Slightly tighter content spacing */
+.sectoral-slide h2 {
+  margin-bottom: 0.35em;
+}
+
+.sectoral-slide .card,
+.sectoral-slide .highlight-box {
+  padding: 12px 14px !important;  /* reduce card spacing globally */
+}
+
+.sectoral-slide .columns {
+  gap: 14px !important;
+  margin-top: 10px !important;
+}
+
+/* Shrink the identity formula */
+.sectoral-slide .card-gold p {
+  font-size: 0.95em !important;
+}
+
+/* Shrink text in the right-hand 'Key Insight' card slightly more */
+.sectoral-slide .card-navy {
+  font-size: 0.90em;
+}
+
+/* Footnote spacing */
+.sectoral-slide .footnote {
+  margin-top: 14px !important;
+  font-size: 0.75em;
+}
+
+/* Chart slide tweaks */
+.chart-slide {
+  font-size: 0.9em;              /* optional: slightly smaller text on this slide */
+}
+
+/* Make the Flourish chart fill width but not overshoot height */
+.chart-slide .sectoral-flourish {
+  width: 100%;
+  max-width: 960px;
+  margin: 12px auto 0;
+}
+
+/* Just in case Flourish ignores data-height and sets its own iframe height */
+.chart-slide .sectoral-flourish iframe {
+  height: 480px !important;      /* same number as data-height */
+  width: 100%;
+}
+
+
+
   </style>
 </head>
 <body>
   <div class="reveal">
-    <div class="slides">
+    <div class="slides" >
 
       <!-- SLIDE 1: Title -->
       <section class="title-slide">
@@ -628,7 +1101,14 @@
               </div>
             </div>
             <div class="agenda-item">
-              <div class="agenda-number gold">6</div>
+              <div class="agenda-number">6</div>
+              <div class="agenda-text">
+                <h4>Sectoral Balances</h4>
+                <p>The accounting identity that connects all sectors</p>
+              </div>
+            </div>
+            <div class="agenda-item">
+              <div class="agenda-number gold">7</div>
               <div class="agenda-text">
                 <h4>Implications for Policy</h4>
                 <p>Real vs perceived constraints</p>
@@ -722,7 +1202,7 @@
             </div>
           </div>
         </div>
-        <div class="card card-gold" style="margin-top: 20px;">
+        <div class="card card-gold key-insight" style="margin-top: 20px;">
           <strong>Key insight:</strong> Bank deposits are IOUs from commercial banks to their customers — they are created by banks, not by the central bank.
         </div>
         <aside class="notes">
@@ -797,7 +1277,7 @@
             </div>
           </div>
         </div>
-        <div class="quote" style="margin: 16px 0; padding: 18px;">
+        <div class="quote" style="margin: 16px ; padding: 10px;">
           "One common misconception is that banks act simply as intermediaries, lending out the deposits that savers place with them..."
           <p class="source">— Bank of England, Quarterly Bulletin 2014 Q1</p>
         </div>
@@ -861,10 +1341,10 @@
       </section>
 
       <!-- SLIDE 10: Misconception - Money Multiplier -->
-      <section>
+      <section data-slide="money-multiplier">
         <h2><span class="badge badge-red">Common Misconception</span></h2>
         <h2>The "Money Multiplier"</h2>
-        <div class="card-red" style="margin: 10px 0; padding: 14px;">
+        <div class="card card-red" style="margin: 10px 0; padding: 14px;">
           <p class="muted small" style="font-style: italic; margin-bottom: 10px;">"The central bank controls the money supply by setting the quantity of reserves, which banks then 'multiply up'..."</p>
           <div class="flow">
             <div class="flow-box">
@@ -890,8 +1370,8 @@
           "While the money multiplier theory can be a useful way of introducing money and banking in economic textbooks, it is not an accurate description of how money is created in reality."
           <span class="source" style="margin-left: 8px;">— Bank of England (2014)</span>
         </div>
-        <div class="columns" style="margin-top: 10px;">
-          <div class="column card">
+        <div class="columns " style="margin-top: 10px;">
+          <div class="column  card">
             <p class="small"><strong style="color: var(--navy);">Reserves don't constrain lending</strong></p>
             <p class="smaller muted">Banks decide how much to lend based on profitable opportunities. They obtain reserves afterwards.</p>
           </div>
@@ -911,14 +1391,14 @@
         <h2>What Actually Constrains Bank Lending?</h2>
         <p class="muted small">Banks can't create unlimited money. Three sets of constraints limit money creation:</p>
         <div class="columns" style="margin-top: 12px; gap: 20px;">
-          <div class="column card">
+          <div class="column card card-gray">
             <div style="width: 40px; height: 40px; background: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; margin-bottom: 12px;">1</div>
             <h3 style="font-size: 1em;">Market Forces</h3>
             <p class="smaller muted">• Profitability in competitive market</p>
             <p class="smaller muted">• Must attract deposits to fund lending</p>
             <p class="smaller muted">• Credit risk assessment</p>
           </div>
-          <div class="column card">
+          <div class="column card card-gray">
             <div style="width: 40px; height: 40px; background: var(--navy); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; margin-bottom: 12px;">2</div>
             <h3 style="font-size: 1em;">Borrower Behaviour</h3>
             <p class="smaller muted">• Willingness to borrow</p>
@@ -933,7 +1413,7 @@
             <p class="smaller"><strong>• Ultimate constraint</strong></p>
           </div>
         </div>
-        <div class="card card-green" style="margin-top: 12px; padding: 14px;">
+        <div class="card card-gold key-insight" style="margin-top: 12px; padding: 14px;">
           <strong>The key point:</strong> Monetary policy is the <em>ultimate</em> constraint. The BoE influences lending through interest rates, not by controlling reserves.
         </div>
         <p class="footnote">Source: Bank of England (2014) — see also Farag, Harland and Nixon (2013) on capital and liquidity requirements</p>
@@ -963,7 +1443,7 @@
             <strong>Loan repayment destroys money.</strong> Just as lending creates deposits, repayment extinguishes them.
           </div>
         </div>
-        <div class="highlight-box" style="margin-top: 16px; padding: 18px;">
+        <div class="highlight-box" style="margin-top: 16px; padding: 12px;">
           <p style="font-size: 0.9em; font-style: italic;">"Most of the money in circulation is created, not by the printing presses of the Bank of England, but by the commercial banks themselves."</p>
           <span style="color: var(--gold); font-size: 0.8em; font-weight: 600;">— Bank of England (2014)</span>
         </div>
@@ -985,7 +1465,7 @@
       </section>
 
       <!-- SLIDE 14: Consolidated Fund -->
-      <section>
+      <section class="compact-slide ">
         <h2>The Consolidated Fund</h2>
         <p class="muted">The core legal and accounting structure at the heart of UK public finance</p>
         <div class="columns" style="margin-top: 20px;">
@@ -1001,7 +1481,7 @@
               <p class="smaller muted">• Source of government securities issuance</p>
               <p class="smaller muted">• Destination for most government revenue</p>
             </div>
-            <div class="card card-gold" style="margin-top: 16px;">
+            <div class="card card-gold key-insight" style="margin-top: 16px;">
               <strong>Key insight:</strong> The Consolidated Fund acts as a <em>sovereign line of credit</em> that only Parliament can authorize drawing upon.
             </div>
           </div>
@@ -1034,7 +1514,7 @@
       <!-- SLIDE 15: System Architecture -->
       <section>
         <h2>The UK Government's Financial Architecture</h2>
-        <img src="image/system_map.png" alt="UK Government Financial Architecture" style="width: 100%; max-width: 1100px; display: block; margin: 0 auto;">
+        <img src="image/system_map.png" alt="UK Government Financial Architecture" style="width: 100%; max-width: 950px; display: block; padding-bottom: 20px; margin: 0 auto;">
         <p class="footnote">Source: Berkeley et al. (2025) "The Self-Financing State", Figure 1</p>
         <aside class="notes">
           This diagram shows the institutional architecture. At the top is HM Treasury with its central funds and departmental accounts in the Government Banking Service. These connect to accounts at the Bank of England. Below that are commercial banks with their reserve accounts, connected to the public who hold deposits. All government transactions flow through this structure.
@@ -1042,7 +1522,7 @@
       </section>
 
       <!-- SLIDE 16: Parliament Authorizes -->
-      <section>
+      <section class="compact-slide compact-parliament">
         <h2>Parliament Authorizes All Spending</h2>
         <div class="quote" style="border-left-color: var(--navy);">
           <p class="small"><strong style="color: var(--navy);">Exchequer and Audit Departments Act 1866, Section 11</strong></p>
@@ -1072,7 +1552,7 @@
             <p class="smaller muted">• Defence budget</p>
           </div>
         </div>
-        <div class="card card-gold" style="margin-top: 20px;">
+        <div class="card card-gold key-insight" style="margin-top: 20px;">
           <strong>Key point:</strong> Individual departments cannot spend without Parliamentary authorization. The Comptroller and Auditor General verifies each requisition before granting Treasury a "credit" on the Consolidated Fund.
         </div>
         <p class="footnote">Two Supply and Appropriation Acts typically passed each year (July and March)</p>
@@ -1082,7 +1562,7 @@
       </section>
 
       <!-- SLIDE 17: Spending Mechanism -->
-      <section>
+      <section class="compact-steps">
         <h2>The Government Spending Mechanism</h2>
         <div class="step">
           <div class="step-number">1</div>
@@ -1123,39 +1603,81 @@
         </aside>
       </section>
 
-      <!-- SLIDE 18: Growing Produce -->
-      <section>
-        <h2>The "Growing Produce of the Fund"</h2>
-        <div style="background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%); padding: 28px; border-radius: 12px; color: white; margin-bottom: 20px;">
-          <p style="font-size: 1.05em;">The Consolidated Fund account at the Bank of England <strong>starts every day with a zero balance</strong>, yet orders for issues are nevertheless made and fulfilled.</p>
-        </div>
-        <div class="columns">
-          <div class="column-wide">
-            <div class="card" style="margin-bottom: 16px;">
-              <p class="small" style="color: var(--navy); font-weight: 600;">Finance Act 1954, Section 34(3)</p>
-              <p class="small" style="font-style: italic; margin-top: 8px;">"Any sum charged by any Act, whenever passed, on the Consolidated Fund shall be charged also on <strong>the growing produce of the Fund</strong>"</p>
-            </div>
-            <p>This connects current spending to <strong>"all the revenues to be received in the future"</strong> — framing expenditure as credit advanced on the security of future tax revenues.</p>
-          </div>
-          <div class="column-narrow">
-            <div class="card card-green" style="margin-bottom: 12px;">
-              <p class="small" style="color: var(--green); font-weight: 600;">What This Means</p>
-              <p class="smaller muted">All spending arises as <strong>new money advanced as credit</strong>, not from taxation or borrowing.</p>
-            </div>
-            <div class="card card-red">
-              <p class="small" style="color: var(--red); font-weight: 600;">No "Intertemporal Budget Constraint"</p>
-              <p class="smaller muted">There is no ex-ante limit on current or future spending from the accounting mechanics.</p>
-            </div>
-          </div>
-        </div>
-        <div class="highlight-box">
-          <strong style="color: var(--gold);">Conclusion:</strong> It is the expenditure that causes a matching future tax liability — not the other way around. The government's taxing power provides the creditworthiness, not the funding.
-        </div>
-        <p class="footnote">See Brittain (1959) "The British Budgetary System" for historical context</p>
-        <aside class="notes">
-          This is the key revelation. The Consolidated Fund starts each day at zero, yet spending still occurs. The Finance Act 1954 refers to the "growing produce of the Fund" — connecting spending to future tax revenues. Spending is credit advanced against future taxes, not spending of pre-collected taxes. The government's power to tax provides creditworthiness, not funding.
-        </aside>
-      </section>
+     <!-- SLIDE 18: Growing Produce -->
+<section class="growing-slide">
+  <h2>The "Growing Produce of the Fund"</h2>
+
+  <div class="gold-banner">
+    <p>
+      The Consolidated Fund account at the Bank of England
+      <strong>starts every day with a zero balance</strong>, yet orders for
+      issues are nevertheless made and fulfilled.
+    </p>
+  </div>
+
+  <div class="columns">
+    <div class="column-wide">
+      <div class="card">
+        <p class="small" style="color: var(--navy); font-weight: 600;">
+          Finance Act 1954, Section 34(3)
+        </p>
+        <p class="small" style="font-style: italic; margin-top: 6px;">
+          "Any sum charged by any Act, whenever passed, on the Consolidated Fund
+          shall be charged also on <strong>the growing produce of the Fund</strong>"
+        </p>
+      </div>
+
+      <p>
+        This connects current spending to
+        <strong>"all the revenues to be received in the future"</strong> —
+        framing expenditure as credit advanced on the security of future tax
+        revenues.
+      </p>
+    </div>
+
+    <div class="column-narrow">
+      <div class="card card-green" style="margin-bottom: 10px;">
+        <p class="small" style="color: var(--green); font-weight: 600;">
+          What This Means
+        </p>
+        <p class="smaller muted">
+          All spending arises as <strong>new money advanced as credit</strong>,
+          not from taxation or borrowing.
+        </p>
+      </div>
+
+      <div class="card card-red">
+        <p class="small" style="color: var(--red); font-weight: 600;">
+          No "Intertemporal Budget Constraint"
+        </p>
+        <p class="smaller muted">
+          There is no ex-ante limit on current or future spending from the
+          accounting mechanics.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <strong style="color: var(--gold);">Conclusion:</strong>
+    It is the expenditure that causes a matching future tax liability — not the
+    other way around. The government's taxing power provides the
+    creditworthiness, not the funding.
+  </div>
+
+  <p class="footnote">
+    See Brittain (1959) "The British Budgetary System" for historical context
+  </p>
+
+  <aside class="notes">
+    This is the key revelation. The Consolidated Fund starts each day at zero,
+    yet spending still occurs. The Finance Act 1954 refers to the "growing
+    produce of the Fund" — connecting spending to future tax revenues. Spending
+    is credit advanced against future taxes, not spending of pre-collected
+    taxes. The government's power to tax provides creditworthiness, not funding.
+  </aside>
+</section>
+
 
       <!-- SLIDE 19: Part 4 Header -->
       <section class="section-header">
@@ -1168,97 +1690,344 @@
         </aside>
       </section>
 
-      <!-- SLIDE 20: Taxation -->
+     <!-- SLIDE 20: Taxation -->
+<section class="taxation-slide">
+  <h2>Taxation: The Reverse Process</h2>
+
+  <div class="quote" style="border-left-color: var(--navy);">
+    <p class="small">
+      <strong style="color: var(--navy);">
+        Exchequer and Audit Departments Act 1866, Section 10
+      </strong>
+    </p>
+    <p class="small">
+      "All public moneys payable to the Exchequer shall be paid into the Consolidated Fund"
+    </p>
+  </div>
+
+  <div class="flow">
+    <div class="flow-box">
+      <p class="smaller muted">Taxpayer</p>
+      <p class="amount negative">–£100</p>
+      <p class="smaller muted">bank deposit</p>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box">
+      <p class="smaller muted">Commercial Bank</p>
+      <p class="amount negative">–£100</p>
+      <p class="smaller muted">reserves</p>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box">
+      <p class="smaller muted">HMRC → BoE</p>
+      <p class="amount positive">+£100</p>
+      <p class="smaller muted">HMRC account</p>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box" style="background: var(--gold); color: white; border-color: var(--gold);">
+      <p class="smaller" style="opacity: 0.8;">Consolidated Fund</p>
+      <p class="amount" style="color: white;">+£100</p>
+      <p class="smaller" style="opacity: 0.8;">credits CF</p>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="column card card-gold">
+      <p class="small"><strong>Taxes destroy money</strong></p>
+      <p class="smaller muted">
+        Taxation credits the CF account, offsetting past monetary injections from spending.
+        Money leaves the private sector.
+      </p>
+    </div>
+    <div class="column card card-green">
+      <p class="small"><strong>Settled in BoE money</strong></p>
+      <p class="smaller muted">
+        Taxes are finally settled using Bank of England money (reserves), not commercial bank deposits.
+      </p>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <strong style="color: var(--gold);">The "Exchequer Sweep":</strong>
+    At end of each day, all public deposit accounts are swept to zero, with net balances consolidated
+    into the National Loans Fund. Spending and revenue are only reconciled at day's end.
+  </div>
+
+  <p class="footnote">
+    Full accounting in Table 2, Appendix. See also Commissioners for Revenue and Customs Act 2005, Section 44.
+  </p>
+
+  <aside class="notes">
+    Taxation is the reverse process. When someone pays tax, their deposit decreases, their bank's
+    reserves decrease, HMRC's account is credited, and ultimately the Consolidated Fund is credited.
+    Taxes destroy money — the reverse of spending creating it. At day's end, the "Exchequer Sweep"
+    consolidates all balances.
+  </aside>
+</section>
+
+
+ <!-- SLIDE 21: Debt Issuance -->
+<section class="debt-slide">
+  <h2>Debt Issuance: What It's Actually For</h2>
+
+  <div class="card card-red debt-rule" style="position: relative;">
+    <span class="badge badge-red" style="position: absolute;">Policy Choice</span>
+    <p class="small" style="font-weight: 600;">The "Full Funding Rule"</p>
+    <p class="smaller muted" style="font-style: italic;">
+      "An overarching requirement of debt management policy is that the government fully finances
+      its projected financing requirement each year through the sale of debt."
+    </p>
+    <p class="smaller muted">— DMO Annual Report 2023</p>
+  </div>
+
+  <div class="columns">
+    <div class="column card">
+      <p class="small" style="color: var(--navy); font-weight: 600;">Historical Purpose (pre-2009)</p>
+      <p class="smaller muted">
+        Under the "corridor" system, debt issuance drained excess reserves to maintain the target interest rate.
+      </p>
+      <p class="smaller muted">• Net spending adds reserves</p>
+      <p class="smaller muted">• Bond sales drain reserves</p>
+      <p class="smaller muted">• Keeps interbank rate on target</p>
+    </div>
+
+    <div class="column card card-green">
+      <p class="small" style="color: var(--green); font-weight: 600;">Current Purpose (post-QE)</p>
+      <p class="smaller muted">
+        Under the "floor" system with excess reserves, debt issuance primarily serves different functions:
+      </p>
+      <p class="smaller">• Provides <strong>safe store of value</strong></p>
+      <p class="smaller">• Supplies <strong>secure collateral</strong> for repo markets</p>
+      <p class="smaller">• Supports financial sector liquidity needs</p>
+    </div>
+  </div>
+
+  <div class="card card-gold key-insight">
+    <strong>The paradox:</strong> QE removes gilts from private sector balance sheets, while the full
+    funding rule requires continued issuance. These policies work at cross-purposes.
+  </div>
+
+  <div class="highlight-box key-insight">
+    <strong style="color: var(--gold);">The Ways and Means Account:</strong>
+    Treasury's overdraft facility at the BoE remains available — used in crises (e.g., April 2020).
+    Gilt issuance is a policy choice, not an operational necessity.
+  </div>
+
+  <p class="footnote">
+    Since 2006, the BoE pays interest on reserves, making the quantity of reserves less relevant
+    for interest rate control.
+  </p>
+
+  <aside class="notes">
+    The "full funding rule" requires government to issue debt matching its borrowing requirement.
+    Historically, it drained reserves to control interest rates. Today, with excess reserves and the
+    BoE paying interest on them, debt issuance mainly provides safe assets and collateral to the
+    financial sector. The Ways and Means overdraft at the BoE remains available — gilt issuance is
+    a policy choice.
+  </aside>
+</section>
+
+
+      <!-- SLIDE 22: Part 5 Header - Sectoral Balances -->
+      <section class="section-header">
+        <p class="part-label">Part Five</p>
+        <h2>Sectoral Balances</h2>
+        <div class="gold-line"></div>
+        <p style="color: white; opacity: 0.7; margin-top: 24px;">The accounting identity that connects all sectors</p>
+        <aside class="notes">
+          Now we'll examine sectoral balances — a powerful accounting framework that shows how government, private sector, and foreign sector financial positions must sum to zero.
+        </aside>
+      </section>
+
+      <!-- SLIDE 23: Sectoral Balances Explained -->
+<section class="sectoral-slide">
+  <h2>What Are Sectoral Balances?</h2>
+
+  <div class="card card-gold" style="margin-bottom: 20px;">
+    <p style="font-size: 1.1em; text-align: center;">
+      <strong>Government Balance + Private Sector Balance + Foreign Balance = 0</strong>
+    </p>
+  </div>
+
+  <div class="columns">
+    <div class="column-wide">
+      <p>
+        Sectoral balances are an <strong>accounting identity</strong> derived from national accounts.
+        Every pound spent by one sector is received by another — the flows must balance.
+      </p>
+
+      <div class="columns" style="margin-top: 16px; gap: 12px;">
+        <div class="column card" style="border-left: 4px solid var(--navy);">
+          <p class="small" style="color: var(--navy); font-weight: 600;">Government Sector</p>
+          <p class="smaller muted">Deficit = spending &gt; taxation</p>
+          <p class="smaller muted">Surplus = taxation &gt; spending</p>
+        </div>
+
+        <div class="column card" style="border-left: 4px solid var(--green);">
+          <p class="small" style="color: var(--green); font-weight: 600;">Private Sector</p>
+          <p class="smaller muted">Surplus = saving &gt; investment</p>
+          <p class="smaller muted">Deficit = investment &gt; saving</p>
+        </div>
+
+        <div class="column card" style="border-left: 4px solid var(--gold);">
+          <p class="small" style="color: var(--gold); font-weight: 600;">Foreign Sector</p>
+          <p class="smaller muted">Surplus = imports &gt; exports (from UK perspective)</p>
+          <p class="smaller muted">Deficit = exports &gt; imports</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Removed the old right-column key insight block -->
+  </div>
+
+  <!-- NEW gold Key Insight card -->
+  <div class="card card-gold key-insight" style="margin-top: 16px;">
+    <strong>Key Insight:</strong>
+    If the government runs a surplus, by accounting identity,
+    the non-government sectors (private + foreign) must run a deficit of equal size.
+  </div>
+
+  <div class="highlight-box key-insight" style="margin-top: 16px;">
+    <strong style="color: var(--gold);">Why this matters:</strong>
+    A government deficit is not "borrowing from the future" — it is the
+    <em>source</em> of private sector net financial assets. Government deficits =
+    non-government surpluses.
+  </div>
+
+  <p class="footnote">
+    Based on Godley, W. (1999) "Seven Unsustainable Processes" and national accounting identities (GDP = C + I + G + NX)
+  </p>
+
+</section>
+
+
+      <!-- SLIDE 24: Sectoral Balances Charts - Vertical Stack -->
       <section>
-        <h2>Taxation: The Reverse Process</h2>
-        <div class="quote" style="border-left-color: var(--navy); margin-bottom: 20px;">
-          <p class="small"><strong style="color: var(--navy);">Exchequer and Audit Departments Act 1866, Section 10</strong></p>
-          <p class="small">"All public moneys payable to the Exchequer shall be paid into the Consolidated Fund"</p>
-        </div>
-        <div class="flow" style="margin-bottom: 24px;">
-          <div class="flow-box">
-            <p class="smaller muted">Taxpayer</p>
-            <p class="amount negative">–£100</p>
-            <p class="smaller muted">bank deposit</p>
+         <section class="chart-slide">
+    <h2 class="slide-title">Sectoral Balances: United Kingdom</h2>
+    <p class="chart-subtitle">Use ↓ to see other countries</p>
+
+    <!-- Flourish embed with explicit height -->
+    <div
+      class="flourish-embed flourish-chart sectoral-flourish"
+      data-src="visualisation/26138148"
+      data-height="480px"
+    >
+      <script src="https://public.flourish.studio/resources/embed.js"></script>
+      <noscript>
+        <img
+          src="https://public.flourish.studio/visualisation/26138148/thumbnail"
+          width="100%"
+          alt="UK Sectoral Balances chart"
+        />
+      </noscript>
+    </div>
+
+    <aside class="notes">
+      This chart shows UK sectoral balances over time. Notice how when the government deficit increases,
+      the private sector surplus tends to increase as well. The three balances always sum to zero.
+    </aside>
+  </section>
+        <section class="chart-slide">
+          <h2 class="slide-title">Sectoral Balances: Japan</h2>
+          <p class="chart-subtitle">Large government deficits matched by large private surpluses</p>
+          <div style="height: 640px; margin: 0;">
+            <div class="flourish-embed flourish-chart" data-src="visualisation/26138148"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26138148/thumbnail" width="100%" alt="Japan Sectoral Balances chart" /></noscript></div>
           </div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-box">
-            <p class="smaller muted">Commercial Bank</p>
-            <p class="amount negative">–£100</p>
-            <p class="smaller muted">reserves</p>
+          <aside class="notes">
+            Japan has run large government deficits for decades, which have been matched by large private sector surpluses. This explains how Japan maintains low interest rates despite high debt-to-GDP ratios.
+          </aside>
+        </section>
+        <section class="chart-slide">
+          <h2 class="slide-title">Sectoral Balances: United States</h2>
+          <p class="chart-subtitle">Government deficits fund both private surpluses and current account deficits</p>
+          <div style="height: 640px; margin: 0;">
+            <div class="flourish-embed flourish-chart" data-src="visualisation/26138148"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26138148/thumbnail" width="100%" alt="US Sectoral Balances chart" /></noscript></div>
           </div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-box">
-            <p class="smaller muted">HMRC → BoE</p>
-            <p class="amount positive">+£100</p>
-            <p class="smaller muted">HMRC account</p>
+          <aside class="notes">
+            The US typically runs both government and current account deficits, meaning the private domestic sector can still accumulate net financial assets despite the trade deficit.
+          </aside>
+        </section>
+        <section class="chart-slide">
+          <h2 class="slide-title">Sectoral Balances: Germany</h2>
+          <p class="chart-subtitle">Export surpluses allow government surplus without private sector deficit</p>
+          <div style="height: 640px; margin: 0;">
+            <div class="flourish-embed flourish-chart" data-src="visualisation/26138148"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26138148/thumbnail" width="100%" alt="Germany Sectoral Balances chart" /></noscript></div>
           </div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-box" style="background: var(--gold); color: white; border-color: var(--gold);">
-            <p class="smaller" style="opacity: 0.8;">Consolidated Fund</p>
-            <p class="amount" style="color: white;">+£100</p>
-            <p class="smaller" style="opacity: 0.8;">credits CF</p>
+          <aside class="notes">
+            Germany's large trade surplus means the government can run balanced budgets or surpluses while the private sector still saves. This is only possible because other countries run deficits.
+          </aside>
+        </section>
+        <section class="chart-slide">
+          <h2 class="slide-title">Sectoral Balances: France</h2>
+          <p class="chart-subtitle">Constrained by Eurozone fiscal rules</p>
+          <div style="height: 640px; margin: 0;">
+            <div class="flourish-embed flourish-chart" data-src="visualisation/26138148"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26138148/thumbnail" width="100%" alt="France Sectoral Balances chart" /></noscript></div>
           </div>
-        </div>
+          <aside class="notes">
+            France, as a Eurozone member, faces constraints that currency-issuing nations don't. The sectoral balances still hold, but policy options are more limited.
+          </aside>
+        </section>
+        <section class="chart-slide">
+          <h2 class="slide-title">Sectoral Balances: Australia</h2>
+          <p class="chart-subtitle">Resource exports influence the balance</p>
+          <div style="height: 640px; margin: 0;">
+            <div class="flourish-embed flourish-chart" data-src="visualisation/26138148"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26138148/thumbnail" width="100%" alt="Australia Sectoral Balances chart" /></noscript></div>
+          </div>
+          <aside class="notes">
+            Australia's commodity exports significantly influence its sectoral balances, with the foreign sector position varying with global commodity demand.
+          </aside>
+        </section>
+        <section class="chart-slide">
+          <h2 class="slide-title">Sectoral Balances: Canada</h2>
+          <p class="chart-subtitle">Close integration with US economy</p>
+          <div style="height: 640px; margin: 0;">
+            <div class="flourish-embed flourish-chart" data-src="visualisation/26744215"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26138148/thumbnail" width="100%" alt="Canada Sectoral Balances chart" /></noscript></div>
+          </div>
+          <aside class="notes">
+            Canada's sectoral balances are heavily influenced by its trade relationship with the United States and its resource sector.
+          </aside>
+        </section>
+      </section>
+
+      <!-- SLIDE 25: Sectoral Balances Implications -->
+      <section>
+        <h2>What Sectoral Balances Tell Us</h2>
         <div class="columns">
-          <div class="column card card-gold">
-            <p><strong>Taxes destroy money</strong></p>
-            <p class="smaller muted">Taxation credits the CF account, offsetting past monetary injections from spending. Money leaves the private sector.</p>
+          <div class="column">
+            <div class="card card-red" style="margin-bottom: 16px;">
+              <p class="small" style="color: var(--red); font-weight: 600;">The "Balanced Budget" Problem</p>
+              <p class="smaller muted">If the government balances its budget and the country runs a trade deficit, the private sector <em>must</em> go into deficit (spend more than income).</p>
+              <p class="smaller" style="margin-top: 12px;"><strong>This is unsustainable</strong> — private debt accumulates until a crisis forces correction.</p>
+            </div>
+            <div class="card">
+              <p class="small" style="color: var(--navy); font-weight: 600;">Historical Pattern</p>
+              <p class="smaller muted">Every major financial crisis has been preceded by a period where government surpluses forced the private sector into deficit.</p>
+            </div>
           </div>
-          <div class="column card card-green">
-            <p><strong>Settled in BoE money</strong></p>
-            <p class="smaller muted">Taxes are finally settled using Bank of England money (reserves), not commercial bank deposits.</p>
+          <div class="column">
+            <div class="card card-green" style="margin-bottom: 16px;">
+              <p class="small" style="color: var(--green); font-weight: 600;">Government Deficits Enable Private Saving</p>
+              <p class="smaller muted">For the private sector to net save (accumulate financial assets), the government must run a deficit of equal size (adjusted for trade).</p>
+            </div>
+            <div class="card card-gold">
+              <p class="small" style="font-weight: 600;">Policy Implication</p>
+              <p class="smaller">Arbitrary deficit targets ignore sectoral balance realities. The "appropriate" deficit depends on private sector saving desires and the trade balance — not a fixed percentage of GDP.</p>
+            </div>
           </div>
         </div>
         <div class="highlight-box" style="margin-top: 16px;">
-          <strong style="color: var(--gold);">The "Exchequer Sweep":</strong> At end of each day, all public deposit accounts are swept to zero, with net balances consolidated into the National Loans Fund. Spending and revenue are only reconciled at day's end.
+          <strong style="color: var(--gold);">The key question changes:</strong> Instead of "how do we reduce the deficit?", ask "what deficit is consistent with full employment and private sector financial stability?"
         </div>
-        <p class="footnote">Full accounting in Table 2, Appendix. See also Commissioners for Revenue and Customs Act 2005, Section 44.</p>
+        <p class="footnote">See Godley's analysis of the "Goldilocks economy" in the late 1990s predicting the 2001 recession and housing bubble</p>
         <aside class="notes">
-          Taxation is the reverse process. When someone pays tax, their deposit decreases, their bank's reserves decrease, HMRC's account is credited, and ultimately the Consolidated Fund is credited. Taxes destroy money — the reverse of spending creating it. At day's end, the "Exchequer Sweep" consolidates all balances.
+          The policy implications are profound. If we target arbitrary deficit reduction while running trade deficits, we force the private sector into deficit. This creates unsustainable private debt growth that eventually triggers financial crises. The right question is what deficit is consistent with desired private sector outcomes.
         </aside>
       </section>
 
-      <!-- SLIDE 21: Debt Issuance -->
-      <section>
-        <h2>Debt Issuance: What It's Actually For</h2>
-        <div class="card card-red" style="margin-bottom: 20px; position: relative;">
-          <span class="badge badge-red" style="position: absolute; top: 12px; right: 16px;">Policy Choice</span>
-          <p class="small" style="font-weight: 600;">The "Full Funding Rule"</p>
-          <p class="smaller muted" style="font-style: italic; margin-top: 8px;">"An overarching requirement of debt management policy is that the government fully finances its projected financing requirement each year through the sale of debt."</p>
-          <p class="smaller muted" style="margin-top: 8px;">— DMO Annual Report 2023</p>
-        </div>
-        <div class="columns">
-          <div class="column card">
-            <p class="small" style="color: var(--navy); font-weight: 600;">Historical Purpose (pre-2009)</p>
-            <p class="smaller muted">Under the "corridor" system, debt issuance drained excess reserves to maintain the target interest rate.</p>
-            <p class="smaller muted" style="margin-top: 12px;">• Net spending adds reserves</p>
-            <p class="smaller muted">• Bond sales drain reserves</p>
-            <p class="smaller muted">• Keeps interbank rate on target</p>
-          </div>
-          <div class="column card card-green">
-            <p class="small" style="color: var(--green); font-weight: 600;">Current Purpose (post-QE)</p>
-            <p class="smaller muted">Under the "floor" system with excess reserves, debt issuance primarily serves different functions:</p>
-            <p class="smaller" style="margin-top: 12px;">• Provides <strong>safe store of value</strong></p>
-            <p class="smaller">• Supplies <strong>secure collateral</strong> for repo markets</p>
-            <p class="smaller">• Supports financial sector liquidity needs</p>
-          </div>
-        </div>
-        <div class="card card-gold" style="margin-top: 16px;">
-          <strong>The paradox:</strong> QE removes gilts from private sector balance sheets, while the full funding rule requires continued issuance. These policies work at cross-purposes.
-        </div>
-        <div class="highlight-box">
-          <strong style="color: var(--gold);">The Ways and Means Account:</strong> Treasury's overdraft facility at the BoE remains available — used in crises (e.g., April 2020). Gilt issuance is a policy choice, not an operational necessity.
-        </div>
-        <p class="footnote">Since 2006, the BoE pays interest on reserves, making the quantity of reserves less relevant for interest rate control.</p>
-        <aside class="notes">
-          The "full funding rule" requires government to issue debt matching its borrowing requirement. But why? Historically, it drained reserves to control interest rates. Today, with excess reserves and the BoE paying interest on them, debt issuance mainly provides safe assets and collateral to the financial sector. The Ways and Means overdraft at the BoE remains available — gilt issuance is a policy choice.
-        </aside>
-      </section>
-
-      <!-- SLIDE 22: Part 5 Header -->
+      <!-- SLIDE 26: Part 6 Header -->
       <section class="section-header">
-        <p class="part-label">Part Five</p>
+        <p class="part-label">Part Six</p>
         <h2>Implications</h2>
         <div class="gold-line"></div>
         <p style="color: white; opacity: 0.7; margin-top: 24px;">Real constraints vs perceived constraints</p>
@@ -1267,7 +2036,7 @@
         </aside>
       </section>
 
-      <!-- SLIDE 23: What Findings Mean -->
+      <!-- SLIDE 27: What Findings Mean -->
       <section>
         <h2>What These Findings Mean</h2>
         <div class="card card-red" style="margin-bottom: 16px;">
