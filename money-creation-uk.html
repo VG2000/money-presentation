@@ -1285,11 +1285,39 @@ section[data-slide="money-multiplier"] .columns .card p {
   font-size: 0.9em;
 }
 
+/* Print / PDF button (screen only) */
+#print-btn {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  background: var(--navy);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--r-main-font);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  opacity: 0.85;
+  transition: opacity 0.15s ease;
+}
+#print-btn:hover { opacity: 1; }
 
+/* Hide the button while printing or in PDF export layout */
+@media print { #print-btn { display: none !important; } }
+.print-pdf #print-btn { display: none !important; }
 
   </style>
 </head>
 <body>
+  <button id="print-btn" title="Export the presentation to PDF">&#x2913; Print / PDF</button>
+
   <div class="reveal">
     <div class="slides" >
 
@@ -2720,6 +2748,26 @@ section[data-slide="money-multiplier"] .columns .card p {
       pdfMaxPagesPerSlide: 1,
       pdfSeparateFragments: false
     });
+
+    // Print / PDF button: reload into reveal.js print layout, then open the
+    // browser print dialog. From there choose "Save as PDF".
+    (function () {
+      var inPrintMode = /print-pdf/gi.test(window.location.search);
+      var btn = document.getElementById('print-btn');
+
+      if (inPrintMode) {
+        // Already in PDF layout — wait for the page to settle, then print.
+        window.addEventListener('load', function () {
+          setTimeout(function () { window.print(); }, 800);
+        });
+      } else {
+        btn.addEventListener('click', function () {
+          window.location.search = window.location.search
+            ? window.location.search + '&print-pdf'
+            : '?print-pdf';
+        });
+      }
+    })();
   </script>
 </body>
 </html>
