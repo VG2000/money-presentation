@@ -1285,39 +1285,53 @@ section[data-slide="money-multiplier"] .columns .card p {
   font-size: 0.9em;
 }
 
-/* Print / PDF button (screen only) */
-#print-btn {
-  position: fixed;
-  top: 14px;
-  right: 14px;
-  z-index: 1000;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 9px 16px;
-  background: var(--navy);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-family: var(--r-main-font);
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
-  opacity: 0.85;
-  transition: opacity 0.15s ease;
+/* --- PDF / print layout fixes --- */
+/* Footnotes are absolutely pinned to the slide bottom; on dense slides the
+   content can reach that far and overlap them. In the PDF, let footnotes flow
+   after the content instead. Scoped to DIRECT children of the slide so a
+   footnote accidentally nested inside a flex row (.columns) is left absolute
+   and never becomes a stray extra column. */
+html.print-pdf .reveal .slides section > .footnote {
+  position: static !important;
+  transform: none !important;
+  left: auto !important;
+  bottom: auto !important;
+  width: 100% !important;
+  margin-top: 16px !important;
 }
-#print-btn:hover { opacity: 1; }
 
-/* Hide the button while printing or in PDF export layout */
-@media print { #print-btn { display: none !important; } }
-.print-pdf #print-btn { display: none !important; }
+/* reveal.js force-zeroes section padding in PDF export, so slide content ends
+   up flush against the page edges. Restore the deck's horizontal slide padding
+   for the PDF. Only left/right are set — touching top/bottom perturbs reveal's
+   per-page vertical sizing and leaves a white strip at the top of full-bleed
+   slides. */
+html.print-pdf .reveal .slides section {
+  padding-left: 80px !important;
+  padding-right: 80px !important;
+}
+/* Denser layouts use tighter side padding on screen — match it in the PDF. */
+html.print-pdf .reveal .slides section.chart-slide {
+  padding-left: 40px !important;
+  padding-right: 40px !important;
+}
+html.print-pdf .reveal .slides section.compact-slide,
+html.print-pdf .reveal .slides section.compact-parliament {
+  padding-left: 60px !important;
+  padding-right: 60px !important;
+}
+/* The architecture diagram is taller than one PDF page, so reveal clips it and
+   the export drops it entirely. Constrain its height so the whole slide fits a
+   single page and the image renders. */
+html.print-pdf .reveal section img[src*="system_map"] {
+  max-height: 560px !important;
+  width: auto !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+}
 
   </style>
 </head>
 <body>
-  <button id="print-btn" title="Export the presentation to PDF">&#x2913; Print / PDF</button>
-
   <div class="reveal">
     <div class="slides" >
 
@@ -1841,6 +1855,7 @@ section[data-slide="money-multiplier"] .columns .card p {
     <p class="smaller" style="opacity: 0.75;">Urgent expenditure</p>
   </div>
 </div>
+        </div>
         <p class="footnote">Governed by Exchequer and Audit Departments Act 1866, National Loans Act 1968</p>
         <aside class="notes">
           The Consolidated Fund is the heart of UK public finance, established in 1787. It's the origin of all government spending and destination of most revenue. Crucially, it functions as a sovereign line of credit that only Parliament can authorize. Several related funds work together, including the National Loans Fund for borrowing operations.
@@ -2744,30 +2759,11 @@ section[data-slide="money-multiplier"] .columns .card p {
       maxScale: 1.5,
       center: false,
       plugins: [ RevealNotes ],
-      // PDF export settings
+      // PDF export settings (used by make-pdf.sh, which renders the deck with
+      // ?print-pdf to a 16:9, one-slide-per-page PDF).
       pdfMaxPagesPerSlide: 1,
       pdfSeparateFragments: false
     });
-
-    // Print / PDF button: reload into reveal.js print layout, then open the
-    // browser print dialog. From there choose "Save as PDF".
-    (function () {
-      var inPrintMode = /print-pdf/gi.test(window.location.search);
-      var btn = document.getElementById('print-btn');
-
-      if (inPrintMode) {
-        // Already in PDF layout — wait for the page to settle, then print.
-        window.addEventListener('load', function () {
-          setTimeout(function () { window.print(); }, 800);
-        });
-      } else {
-        btn.addEventListener('click', function () {
-          window.location.search = window.location.search
-            ? window.location.search + '&print-pdf'
-            : '?print-pdf';
-        });
-      }
-    })();
   </script>
 </body>
 </html>
