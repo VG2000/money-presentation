@@ -29,6 +29,33 @@ This presentation explains:
 - National Loans Act 1968
 - Bank of England Act 1998
 
+## Running Locally
+
+There is no build step and nothing to install. The deck is a single HTML file;
+reveal.js and the Flourish charts load from CDN, so an internet connection is
+needed the first time you open it.
+
+### Option 1 — open the file directly
+
+```bash
+open money-creation-uk.html          # macOS
+xdg-open money-creation-uk.html      # Linux
+```
+
+### Option 2 — serve over HTTP (recommended)
+
+Some browsers restrict `file://` pages, which can block the embedded Flourish
+charts and the system-map image. Serving the folder avoids this:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then visit <http://localhost:8000/money-creation-uk.html>.
+
+Any static server works equally well, for example `npx serve .` or
+`php -S localhost:8000`.
+
 ## Using the Presentation
 
 ### Navigation
@@ -52,6 +79,18 @@ Press `S` to open the speaker view in a new window. This shows:
 
 ### Export to PDF
 
+Run the export script from the repository root:
+
+```bash
+./make-pdf.sh                              # writes money-creation-uk.pdf
+./make-pdf.sh input.html output.pdf        # explicit input/output
+```
+
+This drives headless Google Chrome to produce a clean 16:9, one-slide-per-page
+PDF with slide backgrounds intact. It requires Google Chrome and Node.js 18+.
+
+To export by hand instead:
+
 1. Open the presentation
 2. Add `?print-pdf` to the URL (e.g., `money-creation-uk.html?print-pdf`)
 3. Press `Ctrl/Cmd + P` to print
@@ -60,16 +99,18 @@ Press `S` to open the speaker view in a new window. This shows:
 ## Repository Structure
 
 ```
-sovereign-economics/
-├── README.md                   # This file
-├── LICENSE                     # MIT License
-├── money-creation-uk.html      # The presentation
-├── appendix/
-│   ├── spending-accounting.md  # Table 1: Government spending transactions
-│   ├── taxation-accounting.md  # Table 2: Taxation transactions
-│   └── glossary.md             # Key terms and definitions
-└── sources/
-    └── bibliography.md         # Full reference list
+money-presentation/
+├── README.md                    # This file
+├── LICENSE                      # MIT License
+├── money-creation-uk.html       # The presentation
+├── make-pdf.sh                  # Headless-Chrome PDF export
+├── spending-accounting.md       # Table 1: Government spending transactions
+├── taxation-accounting.md       # Table 2: Taxation transactions
+├── glossary.md                  # Key terms and definitions
+├── bibliography.md              # Full reference list
+├── image/
+│   └── system_map.png           # UK government financial architecture
+└── government-borrowing-and-debt-since-1700-3125x1842.jpg
 ```
 
 ## Technical Details
